@@ -33,6 +33,30 @@ $ file virtblkiosim.ko
 virtblkiosim.ko: ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), BuildID[sha1]=88b3fb4e28410614db58548edbe2e7b48bbcf51c, not stripped
 ```
 
+This module then should be inserted (loaded) into the running kernel through usual `insmod` or `modprobe` commands (see the **Running** section).
+
+To cleanup the working directory (`src`), run `make` with the `clean` target:
+
+```
+$ make clean
+rm -f -vR virtblkiosim.ko virtblkiosim.o virtblkiosim.mod.* .virtblkiosim.*.cmd built-in.o .built-in.* modules.order Module.symvers .tmp_versions
+removed 'virtblkiosim.ko'
+removed 'virtblkiosim.o'
+removed 'virtblkiosim.mod.c'
+removed 'virtblkiosim.mod.o'
+removed '.virtblkiosim.ko.cmd'
+removed '.virtblkiosim.mod.o.cmd'
+removed '.virtblkiosim.o.cmd'
+removed 'built-in.o'
+removed '.built-in.o.cmd'
+removed 'modules.order'
+removed 'Module.symvers'
+removed '.tmp_versions/virtblkiosim.mod'
+removed directory '.tmp_versions'
+```
+
+Make changes and build again :-))).
+
 ## Dependencies
 
 To build the module one needs to have installed build tools and Linux kernel headers along with their respective dependencies. (As for the example above, the required package containing Linux kernel headers is `linux-headers 4.7.6-1`).
