@@ -67,9 +67,13 @@ It is common and usual decision to play with the block device driver inside a vi
 
 The following example practically demonstrates how to do all these steps. Chosen VM is QEMU (with KVM), chosen Linux distribution is Ubuntu Server 16.04 LTS x86-64 (Linux kernel 4.4.0).
 
-### Creating QEMU HDD
+### Setting up the VM
 
 **Note:** All the commands (and related output) shown below were executed under the aforementioned Arch Linux system (x86-64) used as a host OS.
+
+#### Creating QEMU HDD
+
+First create an HDD image file of size, for example, 20GB. (The other three commands given below are not necessary.)
 
 ```
 $ qemu-img create -f raw <hdd-image-file> 20G
@@ -85,7 +89,7 @@ $ ls -al <hdd-image-file>
 -rw------- 1 <username> <usergroup> 21474836480 Jun 14 17:37 <hdd-image-file>
 ```
 
-### Installing Ubuntu Server
+#### Installing Ubuntu Server
 
 Run VM, install OS:
 
@@ -96,7 +100,7 @@ $ file <hdd-image-file>
 <hdd-image-file>: DOS/MBR boot sector
 ```
 
-### Starting up Ubuntu Server
+#### Starting up Ubuntu Server
 
 In order to get access to the VM via SSH, first it needs to properly set up host-guest networking:
 
@@ -145,7 +149,7 @@ $ sudo su -
 
 Logout from root, logout from the current user. The guest OS is now ready to accept connections from the host OS via SSH.
 
-### Logging into Ubuntu Server through SSH
+#### Logging into Ubuntu Server through SSH
 
 ```
 $ ssh -C <vmusername>@10.0.2.100
@@ -155,3 +159,37 @@ Welcome to Ubuntu 16.04.1 LTS (GNU/Linux 4.4.0-34-generic x86_64)
 ```
 
 Now it is time to install and set up additional packages, utilities, development tools, etc. in the guest OS. These steps are not necessary to describe, so that they will be omitted.
+
+### Obtaining block device driver sources
+
+The most obvious way to get block device driver sources inside a running VM is to `git clone` this repository. But if one doesn't plan to use Git for some reason, simply `scp` all the required files from host to guest system:
+
+```
+$ cd virtblkiosim
+$
+$ scp -C src/Makefile src/virtblkiosim.* <vmusername>@10.0.2.100:/home/<vmusername>/virtblkiosim/src
+Makefile                      100% 1164    32.3KB/s   00:00
+virtblkiosim.c                100%   27KB   2.3MB/s   00:00
+virtblkiosim.h                100% 6631     3.7MB/s   00:00
+```
+
+**Note:** In this example it is supposed that the `virtblkiosim` directory and the `src` subdirectory inside a VM have already been created manually.
+
+### Building the block device driver module
+
+Nothing tricky &ndash; just as it is stated in the main **Building** section:
+
+```
+$ make
+make -C/lib/modules/`uname -r`/build M=$PWD
+make[1]: Entering directory '/usr/src/linux-headers-4.4.0-34-generic'
+  LD      /home/<vmusername>/virtblkiosim/src/built-in.o
+  CC [M]  /home/<vmusername>/virtblkiosim/src/virtblkiosim.o
+  Building modules, stage 2.
+  MODPOST 1 modules
+  CC      /home/<vmusername>/virtblkiosim/src/virtblkiosim.mod.o
+  LD [M]  /home/<vmusername>/virtblkiosim/src/virtblkiosim.ko
+make[1]: Leaving directory '/usr/src/linux-headers-4.4.0-34-generic'
+```
+
+Again, the block device driver module is the file `virtblkiosim.ko`.
