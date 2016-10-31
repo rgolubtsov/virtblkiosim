@@ -193,3 +193,72 @@ make[1]: Leaving directory '/usr/src/linux-headers-4.4.0-34-generic'
 ```
 
 Again, the block device driver module is the file `virtblkiosim.ko`.
+
+### Inserting the module into the kernel
+
+Before actually inserting the module into the running VM kernel, it is handy to see/know which system modules are currently loaded and how they are reported:
+
+```
+$ lsmod
+Module                  Size  Used by
+ppdev                  20480  0
+crct10dif_pclmul       16384  0
+crc32_pclmul           16384  0
+cryptd                 20480  0
+joydev                 20480  0
+input_leds             16384  0
+serio_raw              16384  0
+i2c_piix4              24576  0
+8250_fintek            16384  0
+mac_hid                16384  0
+parport_pc             32768  1
+lp                     20480  0
+parport                49152  3 lp,ppdev,parport_pc
+autofs4                40960  2
+psmouse               126976  0
+floppy                 73728  0
+pata_acpi              16384  0
+$
+$ lsblk
+NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+fd0      2:0    1    4K  0 disk
+sda      8:0    0   20G  0 disk
+└─sda1   8:1    0   20G  0 part /
+sr0     11:0    1 1024M  0 rom
+$
+$ free
+              total        used        free      shared  buff/cache   available
+Mem:         499988       36276       56600        6856      407112      432988
+Swap:             0           0           0
+```
+
+Insert the module into the running kernel:
+
+```
+$ sudo insmod virtblkiosim.ko
+```
+
+After that examine what has changed:
+
+```
+$ lsmod
+Module                  Size  Used by
+virtblkiosim        33574912  0                   <== The new kernel module
+ppdev                  20480  0
+crct10dif_pclmul       16384  0
+crc32_pclmul           16384  0
+...
+$
+$ lsblk
+NAME         MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+fd0            2:0    1    4K  0 disk
+sda            8:0    0   20G  0 disk
+└─sda1         8:1    0   20G  0 part /
+sr0           11:0    1 1024M  0 rom
+virtblkiosim 251:0    0   32M  0 disk             <== The new block device
+$
+$ free
+              total        used        free      shared  buff/cache   available
+Mem:         499988       69740       22160        6860      408088      399508
+Swap:             0           0           0
+```
