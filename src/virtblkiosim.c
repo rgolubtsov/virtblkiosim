@@ -688,9 +688,11 @@ static struct block_device_operations viosim_ops = {
 static int __init virtblkiosim_init(void) {
     int ret = EXIT_SUCCESS;
 
-    pr_info(_MODULE_NAME        _COLON_SPACE_SEP \
-            _MODULE_DESCRIPTION _COMMA_SPACE_SEP _MODULE_VERSION _NEW_LINE \
-            _MODULE_NAME        _COLON_SPACE_SEP _MODULE_AUTHOR  _NEW_LINE);
+    pr_info(_MODULE_NAME        _COLON_SPACE_SEP                            \
+            _MODULE_DESCRIPTION _COMMA_SPACE_SEP                            \
+            _MODULE_VERSION_S__ _ONE_SPACE_STRING _MODULE_VERSION _NEW_LINE \
+            _MODULE_NAME        _COLON_SPACE_SEP                            \
+            _MODULE_COPYRIGHT__ _ONE_SPACE_STRING _MODULE_AUTHOR  _NEW_LINE);
 
     /* (1)                                                  */
     /* Registering the block device.                        */
