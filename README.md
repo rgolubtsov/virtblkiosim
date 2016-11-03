@@ -262,3 +262,14 @@ $ free
 Mem:         499988       69740       22160        6860      408088      399508
 Swap:             0           0           0
 ```
+
+Notice the new kernel module (`virtblkiosim`) has appeared in the list of loaded modules, and also there is the new block device with the same name has appeared in the list of active block devices. In addition, a significant memory usage change is clearly visible: `69740 - 36276 = 33464` kilobytes. This is almost the same size as what is shown in the list of loaded modules for this module. (An additional tiny amount of memory is consumed by other system activities.)
+
+Once the module is loaded, it is registered and available as the special block device file:
+
+```
+$ ls -al /dev/virtblkiosim
+brw-rw---- 1 root disk 251, 0 Nov  4 07:07 /dev/virtblkiosim
+```
+
+All further communications with the new block device and operations on controlling it will be performed by accessing this file.
