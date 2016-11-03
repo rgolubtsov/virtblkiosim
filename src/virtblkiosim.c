@@ -429,11 +429,11 @@ static int viosim_open_proc(struct block_device *blkdev, const fmode_t mode) {
     char *viosim_private_data = NULL;
 
     if (blkdev != NULL) {
-        pr_info(_MODULE_NAME _COLON_SPACE_SEP OPEN_PROC_DBG_00 _NEW_LINE);
+/*        pr_info(_MODULE_NAME _COLON_SPACE_SEP OPEN_PROC_DBG_00 _NEW_LINE);*/
 
         if (blkdev->bd_disk != NULL) {
-            pr_info(_MODULE_NAME _COLON_SPACE_SEP \
-                    OPEN_PROC_DBG_01 _NEW_LINE);
+/*            pr_info(_MODULE_NAME _COLON_SPACE_SEP \
+                    OPEN_PROC_DBG_01 _NEW_LINE);*/
 
             viosim_private_data = kzalloc(
                 sizeof(blkdev->bd_disk->private_data) + 1, GFP_KERNEL);
@@ -444,7 +444,7 @@ static int viosim_open_proc(struct block_device *blkdev, const fmode_t mode) {
     }
 
     if (viosim_private_data == NULL) {
-        pr_info(_MODULE_NAME _COLON_SPACE_SEP OPEN_PROC_DBG_02 _NEW_LINE);
+/*        pr_info(_MODULE_NAME _COLON_SPACE_SEP OPEN_PROC_DBG_02 _NEW_LINE);*/
 
         ret = EXIT_FAILURE;
 
@@ -454,7 +454,7 @@ static int viosim_open_proc(struct block_device *blkdev, const fmode_t mode) {
     }
 
     if (viosim_private_data != NULL) {
-        pr_info(_MODULE_NAME _COLON_SPACE_SEP OPEN_PROC_DBG_03 _NEW_LINE);
+/*        pr_info(_MODULE_NAME _COLON_SPACE_SEP OPEN_PROC_DBG_03 _NEW_LINE);*/
 
         pr_info(_MODULE_NAME _COLON_SPACE_SEP \
                 OPEN_PROC_DBG_99 _NEW_LINE, viosim_private_data);
@@ -484,7 +484,7 @@ static void viosim_release_proc(      struct gendisk *viosim_disc,
     char *viosim_private_data = NULL;
 
     if (viosim_disc != NULL) {
-        pr_info(_MODULE_NAME _COLON_SPACE_SEP RLZZ_PROC_DBG_04 _NEW_LINE);
+/*        pr_info(_MODULE_NAME _COLON_SPACE_SEP RLZZ_PROC_DBG_04 _NEW_LINE);*/
 
         viosim_private_data = kzalloc(
             sizeof(viosim_disc->private_data) + 1, GFP_KERNEL);
@@ -494,7 +494,7 @@ static void viosim_release_proc(      struct gendisk *viosim_disc,
     }
 
     if (viosim_private_data == NULL) {
-        pr_info(_MODULE_NAME _COLON_SPACE_SEP RLZZ_PROC_DBG_05 _NEW_LINE);
+/*        pr_info(_MODULE_NAME _COLON_SPACE_SEP RLZZ_PROC_DBG_05 _NEW_LINE);*/
 
         viosim_private_data = kzalloc(3 + 1, GFP_KERNEL);
 
@@ -502,7 +502,7 @@ static void viosim_release_proc(      struct gendisk *viosim_disc,
     }
 
     if (viosim_private_data != NULL) {
-        pr_info(_MODULE_NAME _COLON_SPACE_SEP RLZZ_PROC_DBG_06 _NEW_LINE);
+/*        pr_info(_MODULE_NAME _COLON_SPACE_SEP RLZZ_PROC_DBG_06 _NEW_LINE);*/
 
         pr_info(_MODULE_NAME _COLON_SPACE_SEP \
                 RLZZ_PROC_DBG_99 _NEW_LINE, viosim_private_data);
