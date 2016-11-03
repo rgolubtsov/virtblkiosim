@@ -273,3 +273,45 @@ brw-rw---- 1 root disk 251, 0 Nov  4 07:07 /dev/virtblkiosim
 ```
 
 All further communications with the new block device and operations on controlling it will be performed by accessing this file.
+
+The module is designed to log informational messages of what it is doing and debug/error messages to the kernel log. Right after the command to insert it into the kernel is issued, it starts writing to the log:
+
+```
+$ tailf /var/log/kern.log
+...
+Nov  4 07:07:53 <vmhostname> kernel: [687996.897544] virtblkiosim: Virtual Linux block device driver for simulating and performing I/O, Version 0.1
+Nov  4 07:07:53 <vmhostname> kernel: [687996.897544] virtblkiosim: Copyright (C) 2016 Radislav Golubtsov <ragolubtsov@my.com>
+Nov  4 07:07:53 <vmhostname> kernel: [687996.897550] virtblkiosim: Device registered with major number of 251
+Nov  4 07:07:53 <vmhostname> kernel: [687996.899753] virtblkiosim: Device engage: private_data: virtblkiosim
+Nov  4 07:07:53 <vmhostname> kernel: [687996.899873] virtblkiosim: Device release: private_data: virtblkiosim
+Nov  4 07:07:53 <vmhostname> kernel: [687996.900657] virtblkiosim: Device engage: private_data: virtblkiosim
+Nov  4 07:07:53 <vmhostname> kernel: [687996.901143] virtblkiosim: Device release: private_data: virtblkiosim
+```
+
+Each module message in the log is prepended with the module name (`virtblkiosim`) to easily `grep` on them.
+
+### Removing the module from the kernel
+
+To remove the module from the running kernel, execute one of the following two commands: `rmmod` or `modprobe -r`.
+
+```
+$ sudo rmmod virtblkiosim
+```
+
+Check the kernel log after that:
+
+```
+$ tailf /var/log/kern.log
+...
+Nov  4 07:38:23 <vmhostname> kernel: [689826.504388] virtblkiosim: Removing module...
+Nov  4 07:38:23 <vmhostname> kernel: [689826.530682] virtblkiosim: Device unregistered and removed from the system
+```
+
+Also notice that the special block device file has been deleted during this operation:
+
+```
+$ ls -al /dev/virtblkiosim
+ls: cannot access '/dev/virtblkiosim': No such file or directory
+```
+
+After that the block device `virtblkiosim` becomes absent, hence it is no longer known to the kernel.
