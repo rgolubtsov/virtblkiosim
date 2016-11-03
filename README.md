@@ -232,7 +232,7 @@ Mem:         499988       36276       56600        6856      407112      432988
 Swap:             0           0           0
 ```
 
-Insert the module into the running kernel:
+**Insert the module into the running kernel:**
 
 ```
 $ sudo insmod virtblkiosim.ko
@@ -292,7 +292,7 @@ Each module message in the log is prepended with the module name (`virtblkiosim`
 
 ### Removing the module from the kernel
 
-To remove the module from the running kernel, execute one of the following two commands: `rmmod` or `modprobe -r`.
+To **remove the module from the running kernel**, execute one of the following two commands: `rmmod` or `modprobe -r`.
 
 ```
 $ sudo rmmod virtblkiosim
