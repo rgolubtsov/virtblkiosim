@@ -611,7 +611,7 @@ static int viosim_ioctl_proc(      struct block_device  *blkdev,
          * Setting the get-(read)-request-size-wait-flag back to FALSE
          * to allow the next process to read from the device.
          */
-        viosim_r_reqsz_wait_flag = false;
+/*        viosim_r_reqsz_wait_flag = false;*/
 
         break;
 
@@ -646,7 +646,7 @@ static int viosim_ioctl_proc(      struct block_device  *blkdev,
          * Setting the read wait flag back to FALSE to allow the next process
          * to read from the device.
          */
-        viosim_r_block_wait_flag = false;
+/*        viosim_r_block_wait_flag = false;*/
 
         break;
 
