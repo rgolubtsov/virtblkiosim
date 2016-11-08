@@ -1,0 +1,20 @@
+#
+# tests/iofio/virtblkiofio-00-read.fio
+# =============================================================================
+# VIRTual BLocK IO SIMulating (virtblkiosim). Version 0.1
+# =============================================================================
+# Virtual Linux block device driver for simulating and performing I/O.
+#
+# This fio block device test runs 4k-rand read ops through the libaio backend.
+#
+
+[virtblkiofio-00-read]
+filename=/dev/virtblkiosim
+ioengine=libaio
+buffered=0
+direct=1
+rw=randread
+blocksize=4k
+iodepth=16
+
+# vim:set nu:et:ts=4:sw=4:
