@@ -1,0 +1,159 @@
+# === Running VIRTual BLocK IOCTLing (without args) ===========================
+$ ./virtblkioctl
+==========================================================
+VIRTual BLocK IOCTLing (virtblkioctl), Version 0.1
+Tests block device I/O through the ioctl() system call
+Copyright (C) 2016 Radislav Golubtsov <ragolubtsov@my.com>
+==========================================================
+./virtblkioctl: There must be exactly 3 args passed: 0 arg(s) found
+
+Usage: virtblkioctl <device_node> <ioctl_command> <request_size|num_of_io_ops>
+
+       <device_node>       Something like /dev/virtblkiosim
+
+       <ioctl_command>     One of the following:
+           --reguser       Register a user space caller (itself)
+           --getreqsize    Get the request size to use in read/write operations
+           --getblkdata    Read data block from disk
+           --setblkdata    Write data block to disk
+
+           --io            Continuously perform I/O (read/write) operations
+                           using the commands above in a loop
+                           The <request_size> param is not applicable here
+                           The <num_of_io_ops> param should be set
+                           to the number of I/O operations preferred,
+                           or to 0 for infinite repetitions
+
+       <request_size>      Unsigned integer or 'none' (without quotes) when unknown
+
+       <num_of_io_ops>     The number of I/O ops (see '--io' command description)
+
+# === Running VIRTual BLocK IOCTLing (without sudo) ===========================
+$ ./virtblkioctl /dev/virtblkiosim --reguser none
+==========================================================
+VIRTual BLocK IOCTLing (virtblkioctl), Version 0.1
+Tests block device I/O through the ioctl() system call
+Copyright (C) 2016 Radislav Golubtsov <ragolubtsov@my.com>
+==========================================================
+./virtblkioctl: Cannot open device node: Permission denied
+
+# === Running VIRTual BLocK IOCTLing (--reguser) ==============================
+$ sudo ./virtblkioctl /dev/virtblkiosim --reguser none
+==========================================================
+VIRTual BLocK IOCTLing (virtblkioctl), Version 0.1
+Tests block device I/O through the ioctl() system call
+Copyright (C) 2016 Radislav Golubtsov <ragolubtsov@my.com>
+==========================================================
+./virtblkioctl: ===> /dev/virtblkiosim ===> --reguser
+--reguser: User app registered
+
+$ tailf /var/log/kern.log
+...
+Nov  9 07:06:04 <vmhostname> kernel: [1119885.007369] virtblkiosim: Device engage: private_data: virtblkiosim
+Nov  9 07:06:04 <vmhostname> kernel: [1119885.007504] virtblkiosim: ===> ioctl() call ID: 0x00007100 (dir: 0x0 | size: 0x000 | chr: 0x71 'q' | func: 0x00) ===> arg: 0
+Nov  9 07:06:04 <vmhostname> kernel: [1119885.007507] virtblkiosim: ===> REG_USER_CALLER
+Nov  9 07:06:04 <vmhostname> kernel: [1119885.007626] virtblkiosim: Device release: private_data: virtblkiosim
+
+# === Running VIRTual BLocK IOCTLing (--getreqsize) ===========================
+$ sudo ./virtblkioctl /dev/virtblkiosim --getreqsize none
+==========================================================
+VIRTual BLocK IOCTLing (virtblkioctl), Version 0.1
+Tests block device I/O through the ioctl() system call
+Copyright (C) 2016 Radislav Golubtsov <ragolubtsov@my.com>
+==========================================================
+./virtblkioctl: ===> /dev/virtblkiosim ===> --getreqsize
+--getreqsize: 15381536
+
+$ tailf /var/log/kern.log
+...
+Nov  9 07:06:33 <vmhostname> kernel: [1119914.143668] virtblkiosim: Device engage: private_data: virtblkiosim
+Nov  9 07:06:33 <vmhostname> kernel: [1119914.143702] virtblkiosim: ===> ioctl() call ID: 0x80087101 (dir: 0x2 | size: 0x008 | chr: 0x71 'q' | func: 0x01) ===> arg: 15381536
+Nov  9 07:06:33 <vmhostname> kernel: [1119914.143706] virtblkiosim: ===> GET_REQUEST_SIZE
+Nov  9 07:06:33 <vmhostname> kernel: [1119914.143720] virtblkiosim: Device release: private_data: virtblkiosim
+
+# === Running VIRTual BLocK IOCTLing (--setblkdata) ===========================
+$ sudo ./virtblkioctl /dev/virtblkiosim --setblkdata 8
+==========================================================
+VIRTual BLocK IOCTLing (virtblkioctl), Version 0.1
+Tests block device I/O through the ioctl() system call
+Copyright (C) 2016 Radislav Golubtsov <ragolubtsov@my.com>
+==========================================================
+./virtblkioctl: ===> /dev/virtblkiosim ===> --setblkdata
+--setblkdata: I/O direction: 0 | Start sector: 0 | Number of sectors: 0 | Request buffer: 0
+
+$ tailf /var/log/kern.log
+...
+Nov  9 07:36:50 <vmhostname> kernel: [1121730.541035] virtblkiosim: Device engage: private_data: virtblkiosim
+Nov  9 07:36:50 <vmhostname> kernel: [1121730.541082] virtblkiosim: ===> ioctl() call ID: 0x40087103 (dir: 0x1 | size: 0x008 | chr: 0x71 'q' | func: 0x03) ===> arg: 34993184
+Nov  9 07:36:50 <vmhostname> kernel: [1121730.541086] virtblkiosim: ===> SET_BLOCK
+Nov  9 07:36:50 <vmhostname> kernel: [1121730.541113] virtblkiosim: Device release: private_data: virtblkiosim
+
+# === Running VIRTual BLocK IOCTLing (--getblkdata) ===========================
+$ sudo ./virtblkioctl /dev/virtblkiosim --getblkdata 8
+==========================================================
+VIRTual BLocK IOCTLing (virtblkioctl), Version 0.1
+Tests block device I/O through the ioctl() system call
+Copyright (C) 2016 Radislav Golubtsov <ragolubtsov@my.com>
+==========================================================
+./virtblkioctl: ===> /dev/virtblkiosim ===> --getblkdata
+--getblkdata: I/O direction: 0 | Start sector: 0 | Number of sectors: 0 | Request buffer: 0
+
+$ tailf /var/log/kern.log
+...
+Nov  9 07:38:33 <vmhostname> kernel: [1121833.735652] virtblkiosim: Device engage: private_data: virtblkiosim
+Nov  9 07:38:33 <vmhostname> kernel: [1121833.735774] virtblkiosim: ===> ioctl() call ID: 0x80087102 (dir: 0x2 | size: 0x008 | chr: 0x71 'q' | func: 0x02) ===> arg: 28693536
+Nov  9 07:38:33 <vmhostname> kernel: [1121833.735777] virtblkiosim: ===> GET_BLOCK
+Nov  9 07:38:33 <vmhostname> kernel: [1121833.735878] virtblkiosim: Device release: private_data: virtblkiosim
+
+# === Running VIRTual BLocK IOCTLing (--io) ===================================
+$ sudo ./virtblkioctl /dev/virtblkiosim --io 4
+==========================================================
+VIRTual BLocK IOCTLing (virtblkioctl), Version 0.1
+Tests block device I/O through the ioctl() system call
+Copyright (C) 2016 Radislav Golubtsov <ragolubtsov@my.com>
+==========================================================
+--io: User app registered
+Request size: 6299872
+I/O direction: 0 | PPN: 0 | Start sector: 0 | Number of sectors: 0 | Request buffer: 140728144042261
+I/O direction: 0 | PPN: 0 | Start sector: 0 | Number of sectors: 0 | Request buffer: 0
+Request size: 6299872
+I/O direction: 0 | PPN: 0 | Start sector: 0 | Number of sectors: 0 | Request buffer: 140728144042261
+I/O direction: 0 | PPN: 0 | Start sector: 0 | Number of sectors: 0 | Request buffer: 0
+Request size: 6299872
+I/O direction: 0 | PPN: 0 | Start sector: 0 | Number of sectors: 0 | Request buffer: 140728144042261
+I/O direction: 0 | PPN: 0 | Start sector: 0 | Number of sectors: 0 | Request buffer: 0
+Request size: 6299872
+I/O direction: 0 | PPN: 0 | Start sector: 0 | Number of sectors: 0 | Request buffer: 140728144042261
+I/O direction: 0 | PPN: 0 | Start sector: 0 | Number of sectors: 0 | Request buffer: 0
+
+$ tailf /var/log/kern.log
+...
+Nov  9 07:40:42 <vmhostname> kernel: [1121962.761441] virtblkiosim: Device engage: private_data: virtblkiosim
+Nov  9 07:40:42 <vmhostname> kernel: [1121962.761464] virtblkiosim: ===> ioctl() call ID: 0x00007100 (dir: 0x0 | size: 0x000 | chr: 0x71 'q' | func: 0x00) ===> arg: 0
+Nov  9 07:40:42 <vmhostname> kernel: [1121962.761467] virtblkiosim: ===> REG_USER_CALLER
+Nov  9 07:40:42 <vmhostname> kernel: [1121962.761564] virtblkiosim: ===> ioctl() call ID: 0x80087101 (dir: 0x2 | size: 0x008 | chr: 0x71 'q' | func: 0x01) ===> arg: 6299872
+Nov  9 07:40:42 <vmhostname> kernel: [1121962.761566] virtblkiosim: ===> GET_REQUEST_SIZE
+Nov  9 07:40:42 <vmhostname> kernel: [1121962.761663] virtblkiosim: ===> ioctl() call ID: 0x80087102 (dir: 0x2 | size: 0x008 | chr: 0x71 'q' | func: 0x02) ===> arg: 6299904
+Nov  9 07:40:42 <vmhostname> kernel: [1121962.761665] virtblkiosim: ===> GET_BLOCK
+Nov  9 07:40:42 <vmhostname> kernel: [1121962.761760] virtblkiosim: ===> ioctl() call ID: 0x40087103 (dir: 0x1 | size: 0x008 | chr: 0x71 'q' | func: 0x03) ===> arg: 6299904
+Nov  9 07:40:42 <vmhostname> kernel: [1121962.761762] virtblkiosim: ===> SET_BLOCK
+Nov  9 07:40:42 <vmhostname> kernel: [1121962.761832] virtblkiosim: ===> ioctl() call ID: 0x80087101 (dir: 0x2 | size: 0x008 | chr: 0x71 'q' | func: 0x01) ===> arg: 6299872
+Nov  9 07:40:42 <vmhostname> kernel: [1121962.761834] virtblkiosim: ===> GET_REQUEST_SIZE
+Nov  9 07:40:42 <vmhostname> kernel: [1121962.761897] virtblkiosim: ===> ioctl() call ID: 0x80087102 (dir: 0x2 | size: 0x008 | chr: 0x71 'q' | func: 0x02) ===> arg: 6299904
+Nov  9 07:40:42 <vmhostname> kernel: [1121962.761898] virtblkiosim: ===> GET_BLOCK
+Nov  9 07:40:42 <vmhostname> kernel: [1121962.761962] virtblkiosim: ===> ioctl() call ID: 0x40087103 (dir: 0x1 | size: 0x008 | chr: 0x71 'q' | func: 0x03) ===> arg: 6299904
+Nov  9 07:40:42 <vmhostname> kernel: [1121962.761964] virtblkiosim: ===> SET_BLOCK
+Nov  9 07:40:42 <vmhostname> kernel: [1121962.762027] virtblkiosim: ===> ioctl() call ID: 0x80087101 (dir: 0x2 | size: 0x008 | chr: 0x71 'q' | func: 0x01) ===> arg: 6299872
+Nov  9 07:40:42 <vmhostname> kernel: [1121962.762029] virtblkiosim: ===> GET_REQUEST_SIZE
+Nov  9 07:40:42 <vmhostname> kernel: [1121962.762363] virtblkiosim: ===> ioctl() call ID: 0x80087102 (dir: 0x2 | size: 0x008 | chr: 0x71 'q' | func: 0x02) ===> arg: 6299904
+Nov  9 07:40:42 <vmhostname> kernel: [1121962.762383] virtblkiosim: ===> GET_BLOCK
+Nov  9 07:40:42 <vmhostname> kernel: [1121962.762686] virtblkiosim: ===> ioctl() call ID: 0x40087103 (dir: 0x1 | size: 0x008 | chr: 0x71 'q' | func: 0x03) ===> arg: 6299904
+Nov  9 07:40:42 <vmhostname> kernel: [1121962.762688] virtblkiosim: ===> SET_BLOCK
+Nov  9 07:40:42 <vmhostname> kernel: [1121962.763502] virtblkiosim: ===> ioctl() call ID: 0x80087101 (dir: 0x2 | size: 0x008 | chr: 0x71 'q' | func: 0x01) ===> arg: 6299872
+Nov  9 07:40:42 <vmhostname> kernel: [1121962.763506] virtblkiosim: ===> GET_REQUEST_SIZE
+Nov  9 07:40:42 <vmhostname> kernel: [1121962.763525] virtblkiosim: ===> ioctl() call ID: 0x80087102 (dir: 0x2 | size: 0x008 | chr: 0x71 'q' | func: 0x02) ===> arg: 6299904
+Nov  9 07:40:42 <vmhostname> kernel: [1121962.763527] virtblkiosim: ===> GET_BLOCK
+Nov  9 07:40:42 <vmhostname> kernel: [1121962.763543] virtblkiosim: ===> ioctl() call ID: 0x40087103 (dir: 0x1 | size: 0x008 | chr: 0x71 'q' | func: 0x03) ===> arg: 6299904
+Nov  9 07:40:42 <vmhostname> kernel: [1121962.763546] virtblkiosim: ===> SET_BLOCK
+Nov  9 07:40:42 <vmhostname> kernel: [1121962.763568] virtblkiosim: Device release: private_data: virtblkiosim
+# =============================================================================
