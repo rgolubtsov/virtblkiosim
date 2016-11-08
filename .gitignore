@@ -22,4 +22,7 @@
 *.order
 *.symvers
 
+# === Executables =============================================================
+virtblkioctl
+
 # vim:set nu:et:ts=4:sw=4:
