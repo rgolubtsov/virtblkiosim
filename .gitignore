@@ -7,8 +7,6 @@
 #
 # This is the configuration of the project Git ignorables,
 # i.e. objects that should not be put into the repository.
-# =============================================================================
-# Copyright (C) 2016 Radislav (Radicchio) Golubtsov
 #
 
 # === Object files ============================================================
