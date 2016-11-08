@@ -251,6 +251,20 @@ $
 $ sudo modprobe virtblkiosim
 ```
 
+Once the module is registered (see `depmod` above) &ndash; not necessarily it is loaded &ndash; it might be checked for its metadata:
+
+```
+$ modinfo virtblkiosim
+filename:       /lib/modules/4.4.0-34-generic/kernel/drivers/block/virtblkiosim.ko
+license:        GPL
+author:         Radislav Golubtsov <ragolubtsov@my.com>
+version:        0.1
+description:    Virtual Linux block device driver for simulating and performing I/O
+srcversion:     0E8954471AD2C23E84BFAB6
+depends:
+vermagic:       4.4.0-34-generic SMP mod_unload modversions
+```
+
 After that examine what has changed:
 
 ```
