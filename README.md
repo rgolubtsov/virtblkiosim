@@ -234,8 +234,21 @@ Swap:             0           0           0
 
 **Insert the module into the running kernel:**
 
+**Variant (a):** Use the `insmod` command to insert the module from the working (current) directory where it is actually placed just after build:
+
 ```
 $ sudo insmod virtblkiosim.ko
+```
+
+**Variant (b):** Use the `modprobe` command to insert the module registered in the kernel modules configuration database (first register it):
+
+```
+$ sudo cp -v virtblkiosim.ko /lib/modules/4.4.0-34-generic/kernel/drivers/block
+'virtblkiosim.ko' -> '/lib/modules/4.4.0-34-generic/kernel/drivers/block/virtblkiosim.ko'
+$
+$ sudo depmod
+$
+$ sudo modprobe virtblkiosim
 ```
 
 After that examine what has changed:
@@ -292,10 +305,16 @@ Each module message in the log is prepended with the module name (`virtblkiosim`
 
 ### Removing the module from the kernel
 
-To **remove the module from the running kernel**, execute one of the following two commands: `rmmod` or `modprobe -r`.
+To **remove the module from the running kernel**, execute one of the following two commands: `rmmod` or `modprobe -r`:
 
 ```
 $ sudo rmmod virtblkiosim
+```
+
+or
+
+```
+$ sudo modprobe -r virtblkiosim
 ```
 
 Check the kernel log after that:
