@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+#
+# utils/vm-network-setup (in the source tree)
+#     ~/vm-network-setup (inside VM: /home/<vmusername>)
+# =============================================================================
+# VIRTual BLocK IO SIMulating (virtblkiosim). Version 0.1
+# =============================================================================
+# Virtual Linux block device driver for simulating and performing I/O.
+#
+# This helper script automates final network setup actions inside a VM.
+# Place it into the /home/<vmusername> directory and execute it each time
+# after a VM is restarted: $ sudo ./vm-network-setup
+# =============================================================================
+# Copyright (C) 2016 Radislav (Radicchio) Golubtsov
+#
+
+# Helper constants.
+declare -r EXIT_FAILURE=1 #    Failing exit status.
+declare -r EXIT_SUCCESS=0 # Successful exit status.
+
+# --- (Inside VM) Network setup - Begin ---------------------------------------
+ip addr add 10.0.2.100/24 dev eth0
+ip route add default via 10.0.2.1
+echo 'nameserver 8.8.8.8' >> /etc/resolv.conf
+cat /etc/resolv.conf
+# --- (Inside VM) Network setup - End -----------------------------------------
+
+# If there is an error -- telling the OS about this.
+if [ $? -eq ${EXIT_FAILURE} ]; then
+    exit ${EXIT_FAILURE}
+fi
+
+exit ${EXIT_SUCCESS}
+
+# vim:set nu:et:ts=4:sw=4:
