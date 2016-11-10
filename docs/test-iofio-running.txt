@@ -1,0 +1,110 @@
+# === Running VIRTual BLocK IOFIOing (read) ===================================
+$ sudo fio virtblkiofio-00-read.fio
+virtblkiofio-00-read: (g=0): rw=randread, bs=4K-4K/4K-4K/4K-4K, ioengine=libaio, iodepth=16
+fio-2.2.10
+Starting 1 process
+
+virtblkiofio-00-read: (groupid=0, jobs=1): err= 0: pid=3832: Fri Nov 11 04:25:30 2016
+  read : io=32768KB, bw=170667KB/s, iops=42666, runt=   192msec
+    slat (usec): min=6, max=309, avg=17.20, stdev= 5.10
+    clat (usec): min=4, max=820, avg=350.52, stdev=35.26
+     lat (usec): min=28, max=827, avg=368.42, stdev=36.24
+    clat percentiles (usec):
+     |  1.00th=[  330],  5.00th=[  338], 10.00th=[  338], 20.00th=[  338],
+     | 30.00th=[  342], 40.00th=[  342], 50.00th=[  342], 60.00th=[  342],
+     | 70.00th=[  346], 80.00th=[  358], 90.00th=[  370], 95.00th=[  386],
+     | 99.00th=[  510], 99.50th=[  652], 99.90th=[  708], 99.95th=[  708],
+     | 99.99th=[  820]
+    lat (usec) : 10=0.01%, 50=0.01%, 100=0.01%, 250=0.22%, 500=98.68%
+    lat (usec) : 750=1.01%, 1000=0.05%
+  cpu          : usr=20.94%, sys=48.17%, ctx=8149, majf=0, minf=25
+  IO depths    : 1=0.1%, 2=0.1%, 4=0.1%, 8=0.1%, 16=99.8%, 32=0.0%, >=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.1%, 32=0.0%, 64=0.0%, >=64=0.0%
+     issued    : total=r=8192/w=0/d=0, short=r=0/w=0/d=0, drop=r=0/w=0/d=0
+     latency   : target=0, window=0, percentile=100.00%, depth=16
+
+Run status group 0 (all jobs):
+   READ: io=32768KB, aggrb=170666KB/s, minb=170666KB/s, maxb=170666KB/s, mint=192msec, maxt=192msec
+
+Disk stats (read/write):
+  virtblkiosim: ios=5752/0, merge=1/0, ticks=48/0, in_queue=48, util=20.25%
+
+$ tailf /var/log/kern.log
+...
+Nov 11 04:25:30 <vmhostname> kernel: [67315.455932] virtblkiosim: Device engage: private_data: virtblkiosim
+Nov 11 04:25:30 <vmhostname> kernel: [67315.455959] virtblkiosim: Device release: private_data: virtblkiosim
+Nov 11 04:25:30 <vmhostname> kernel: [67315.571905] virtblkiosim: Device engage: private_data: virtblkiosim
+Nov 11 04:25:30 <vmhostname> kernel: [67315.571938] virtblkiosim: ===> ioctl() call ID: 0x00001261 (dir: 0x0 | size: 0x000 | chr: 0x12 '' | func: 0x61) ===> arg: 140050596167680
+Nov 11 04:25:30 <vmhostname> kernel: [67315.762900] virtblkiosim: Device release: private_data: virtblkiosim
+
+# === Running VIRTual BLocK IOFIOing (write) ==================================
+$ sudo fio virtblkiofio-01-write.fio
+virtblkiofio-01-write: (g=0): rw=randwrite, bs=4K-4K/4K-4K/4K-4K, ioengine=libaio, iodepth=16
+fio-2.2.10
+Starting 1 process
+
+virtblkiofio-01-write: (groupid=0, jobs=1): err= 0: pid=3841: Fri Nov 11 04:27:15 2016
+  write: io=32768KB, bw=172463KB/s, iops=43115, runt=   190msec
+    slat (usec): min=6, max=395, avg=16.73, stdev= 6.36
+    clat (usec): min=4, max=845, avg=347.82, stdev=52.01
+     lat (usec): min=21, max=853, avg=365.26, stdev=54.34
+    clat percentiles (usec):
+     |  1.00th=[  153],  5.00th=[  290], 10.00th=[  334], 20.00th=[  342],
+     | 30.00th=[  342], 40.00th=[  346], 50.00th=[  346], 60.00th=[  346],
+     | 70.00th=[  350], 80.00th=[  358], 90.00th=[  378], 95.00th=[  390],
+     | 99.00th=[  540], 99.50th=[  612], 99.90th=[  748], 99.95th=[  780],
+     | 99.99th=[  844]
+    lat (usec) : 10=0.01%, 50=0.01%, 100=0.26%, 250=3.63%, 500=94.62%
+    lat (usec) : 750=1.26%, 1000=0.22%
+  cpu          : usr=27.51%, sys=44.44%, ctx=7667, majf=0, minf=10
+  IO depths    : 1=0.1%, 2=0.1%, 4=0.1%, 8=0.1%, 16=99.8%, 32=0.0%, >=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.1%, 32=0.0%, 64=0.0%, >=64=0.0%
+     issued    : total=r=0/w=8192/d=0, short=r=0/w=0/d=0, drop=r=0/w=0/d=0
+     latency   : target=0, window=0, percentile=100.00%, depth=16
+
+Run status group 0 (all jobs):
+  WRITE: io=32768KB, aggrb=172463KB/s, minb=172463KB/s, maxb=172463KB/s, mint=190msec, maxt=190msec
+
+Disk stats (read/write):
+  virtblkiosim: ios=0/5837, merge=0/3, ticks=0/112, in_queue=112, util=15.25%
+
+$ tailf /var/log/kern.log
+...
+Nov 11 04:27:15 <vmhostname> kernel: [67420.671315] virtblkiosim: Device engage: private_data: virtblkiosim
+Nov 11 04:27:15 <vmhostname> kernel: [67420.671341] virtblkiosim: Device release: private_data: virtblkiosim
+Nov 11 04:27:15 <vmhostname> kernel: [67420.783920] virtblkiosim: Device engage: private_data: virtblkiosim
+Nov 11 04:27:15 <vmhostname> kernel: [67420.783954] virtblkiosim: ===> ioctl() call ID: 0x00001261 (dir: 0x0 | size: 0x000 | chr: 0x12 '' | func: 0x61) ===> arg: 140290841550848
+Nov 11 04:27:15 <vmhostname> kernel: [67420.973419] virtblkiosim: Device release: private_data: virtblkiosim
+
+# === Running VIRTual BLocK IOFIOing (both read/write) ========================
+$ sudo fio virtblkiofio-02-both.fio
+virtblkiofio-02-read: (g=0): rw=randread, bs=4K-4K/4K-4K/4K-4K, ioengine=libaio, iodepth=16
+virtblkiofio-02-write: (g=0): rw=randwrite, bs=4K-4K/4K-4K/4K-4K, ioengine=libaio, iodepth=16
+fio-2.2.10
+Starting 2 processes
+^C
+fio: terminating on signal 2
+fio: job 'virtblkiofio-02-read' hasn't exited in 60 seconds, it appears to be stuck. Doing forceful exit of this job.
+fio: job 'virtblkiofio-02-write' hasn't exited in 60 seconds, it appears to be stuck. Doing forceful exit of this job.
+^C
+fio: terminating on signal 2
+<==
+<== VM is completely freezed! Needs a hard restart.
+<==
+
+$ tailf /var/log/kern.log
+...
+Nov 11 04:45:30 <vmhostname> kernel: [68516.021202] virtblkiosim: Device engage: private_data: virtblkiosim
+Nov 11 04:45:30 <vmhostname> kernel: [68516.021310] virtblkiosim: Device release: private_data: virtblkiosim
+Nov 11 04:45:30 <vmhostname> kernel: [68516.021347] virtblkiosim: Device engage: private_data: virtblkiosim
+Nov 11 04:45:30 <vmhostname> kernel: [68516.021359] virtblkiosim: Device release: private_data: virtblkiosim
+Nov 11 04:45:31 <vmhostname> kernel: [68516.133583] virtblkiosim: Device engage: private_data: virtblkiosim
+Nov 11 04:45:31 <vmhostname> kernel: [68516.133620] virtblkiosim: ===> ioctl() call ID: 0x00001261 (dir: 0x0 | size: 0x000 | chr: 0x12 '' | func: 0x61) ===> arg: 139956625170432
+Nov 11 04:45:31 <vmhostname> kernel: [68516.133663] virtblkiosim: Device engage: private_data: virtblkiosim
+Nov 11 04:45:31 <vmhostname> kernel: [68516.133687] virtblkiosim: ===> ioctl() call ID: 0x00001261 (dir: 0x0 | size: 0x000 | chr: 0x12 '' | func: 0x61) ===> arg: 139956625170432
+<==
+<== VM is completely freezed! Needs a hard restart.
+<==
+# =============================================================================
