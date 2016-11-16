@@ -1,4 +1,5 @@
-# VIRTual BLocK IO SIMulating (virtblkiosim)
+# VIRTual BLocK IO SIMulating (virtblkiosim) [![Build Status](https://travis-ci.org/rgolubtsov/virtblkiosim.svg?branch=master)](https://travis-ci.org/rgolubtsov/virtblkiosim)
+
 **Virtual Linux block device driver for simulating and performing I/O**
 
 Despite the fact of existence of various tutorial and referential sources on the Net on how to write a custom block device driver in the form of a loadable kernel module (LKM) for the Linux kernel, they are mostly quite outdated and referred back to somewhat old versions of the Linux kernel. So that the decision to create a simple block device driver LKM suitable (properly working) for recent Linux versions is the goal of this project.
