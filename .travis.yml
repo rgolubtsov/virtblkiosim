@@ -19,11 +19,13 @@ compiler: gcc
 
 sudo: required
 
+dist: trusty
+
 before_install:
     - sudo apt-get update
 
     ## Installing the Linux kernel headers package to build the driver.
-    - sudo apt-get install linux-headers-3.13.0-92-generic
+    - sudo apt-get install linux-headers-4.4.0-47-generic
 
 script:
     ## Building the Virtual Linux block device driver (virtblkiosim).
