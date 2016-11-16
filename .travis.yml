@@ -36,6 +36,15 @@ script:
              && make
              && make
              && ls -al
+             && echo
+             && file virtblkiosim.ko
+
+    ## Loading the driver into the running kernel.
+    - sudo insmod virtblkiosim.ko && lsblk
+                                  && echo
+                                  && lsmod | grep virtblkiosim
+                                  && echo
+                                  && sudo cat /var/log/kern.log | grep virtblkiosim
 
     ## Returning to the previous working dir.
     - cd - && ls -al
@@ -48,9 +57,20 @@ script:
                      && make all
                      && make all
                      && ls -al
+                     && echo
+                     && file virtblkioctl
+
+    ## Running the VIRTual BLocK IOCTLing utility.
+    - ls -al /dev/virtblkiosim && echo
+                               && sudo ./virtblkioctl /dev/virtblkiosim --reguser none
 
     ## Returning to the previous working dir.
     - cd - && ls -al
+
+    ## Unloading the driver from the running kernel.
+    - sudo rmmod virtblkiosim && lsblk
+                              && echo
+                              && sudo cat /var/log/kern.log | grep -i remov
 
 ...
 
