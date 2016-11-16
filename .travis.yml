@@ -41,7 +41,7 @@ script:
     ## Loading the driver into the running kernel.
     - sudo insmod virtblkiosim.ko && lsblk
                                   && lsmod | grep virtblkiosim
-                                  && cat /var/log/kern.log | grep virtblkiosim
+                                  && sudo cat /var/log/kern.log | grep virtblkiosim
 
     ## Returning to the previous working dir.
     - cd - && ls -al
@@ -65,7 +65,7 @@ script:
     ## Unloading the driver from the running kernel.
     - sudo rmmod virtblkiosim && lsblk
                               && lsmod | grep virtblkiosim
-                              && cat /var/log/kern.log | grep -i remov
+                              && sudo cat /var/log/kern.log | grep -i remov
 
 ...
 
