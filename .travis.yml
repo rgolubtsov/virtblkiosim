@@ -15,8 +15,15 @@
 
 language: c
 
-compiler:
-    - gcc
+compiler: gcc
+
+sudo: required
+
+before_install:
+    - sudo apt-get update
+
+    ## Installing the Linux kernel headers package to build the driver.
+    - sudo apt-get install linux-headers-generic
 
 script:
     ## Building the Virtual Linux block device driver (virtblkiosim).
