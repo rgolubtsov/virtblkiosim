@@ -1,0 +1,48 @@
+#
+# .travis.yml
+# =============================================================================
+# VIRTual BLocK IO SIMulating (virtblkiosim). Version 0.1
+# =============================================================================
+# Virtual Linux block device driver for simulating and performing I/O.
+#
+# This is the configuration of the project characteristics
+# used by the Travis CI (continuous integration) service
+# to rebuild the project on every push and pull request.
+#
+
+%YAML 1.1
+---
+
+language: c
+
+compiler:
+    - gcc
+
+script:
+    ## Building the Virtual Linux block device driver (virtblkiosim).
+    - cd src && ls -al
+             && make clean
+             && make clean
+             && ls -al
+             && make
+             && make
+             && ls -al
+
+    ## Returning to the previous working dir.
+    - cd - && ls -al
+
+    ## Building the utility to run block device ioctl() tests (virtblkioctl).
+    - cd tests/ioctl && ls -al
+                     && make clean
+                     && make clean
+                     && ls -al
+                     && make all
+                     && make all
+                     && ls -al
+
+    ## Returning to the previous working dir.
+    - cd - && ls -al
+
+...
+
+# vim:set nu:et:ts=4:sw=4:
