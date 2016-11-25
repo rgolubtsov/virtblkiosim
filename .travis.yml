@@ -73,10 +73,10 @@ script:
 
     ## Running the VIRTual BLocK IOFIOing (fio/libaio) tests.
     - cd tests/iofio && ls -al
-                     && echo
-                     && sudo fio virtblkiofio-00-read.fio
-                     && echo
-                     && sudo fio virtblkiofio-01-write.fio
+#                     && echo
+#                     && sudo fio virtblkiofio-00-read.fio
+#                     && echo
+#                     && sudo fio virtblkiofio-01-write.fio
 
     ## Returning to the previous working dir.
     - cd - && ls -al
