@@ -27,6 +27,9 @@ before_install:
     ## Installing the Linux kernel headers package to build the driver.
     - sudo apt-get install linux-headers-`uname -r`
 
+    ## Installing the Flexible I/O Tester package to test the driver.
+    - sudo apt-get install fio
+
 script:
     ## Building the Virtual Linux block device driver (virtblkiosim).
     - cd src && ls -al
