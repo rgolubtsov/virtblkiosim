@@ -27,6 +27,9 @@ before_install:
     ## Installing the Linux kernel headers package to build the driver.
     - sudo apt-get install linux-headers-`uname -r`
 
+    ## Installing the Flexible I/O Tester package to test the driver.
+    - sudo apt-get install fio
+
 script:
     ## Building the Virtual Linux block device driver (virtblkiosim).
     - cd src && ls -al
@@ -43,6 +46,8 @@ script:
     - sudo insmod virtblkiosim.ko && lsblk
                                   && echo
                                   && lsmod | grep virtblkiosim
+                                  && echo
+                                  && ls -al /dev/virtblkiosim
                                   && echo
                                   && sudo cat /var/log/kern.log | grep virtblkiosim
 
@@ -61,8 +66,17 @@ script:
                      && file virtblkioctl
 
     ## Running the VIRTual BLocK IOCTLing utility.
-    - ls -al /dev/virtblkiosim && echo
-                               && sudo ./virtblkioctl /dev/virtblkiosim --reguser none
+    - sudo ./virtblkioctl /dev/virtblkiosim --reguser none
+
+    ## Returning to the previous working dir.
+    - cd - && ls -al
+
+    ## Running the VIRTual BLocK IOFIOing (fio/libaio) tests.
+    - cd tests/iofio && ls -al
+#                     && echo
+#                     && sudo fio virtblkiofio-00-read.fio
+#                     && echo
+#                     && sudo fio virtblkiofio-01-write.fio
 
     ## Returning to the previous working dir.
     - cd - && ls -al
@@ -70,7 +84,7 @@ script:
     ## Unloading the driver from the running kernel.
     - sudo rmmod virtblkiosim && lsblk
                               && echo
-                              && sudo cat /var/log/kern.log | grep -i remov
+                              && sudo cat /var/log/kern.log | grep virtblkiosim
 
 ...
 
