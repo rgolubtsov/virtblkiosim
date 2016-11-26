@@ -42,6 +42,7 @@ static struct viosim_request_map *viosim_req_map;
  * the request size.</li>
  * <li><code>viosim_r_block_wait_flag</code> is for reading data block.</li>
  * <li><code>viosim_w_block_wait_flag</code> is for writing data block.</li>
+ * </ul>
  */
 static bool viosim_r_reqsz_wait_flag = true;
 static bool viosim_r_block_wait_flag = true;
@@ -62,7 +63,7 @@ static u8 data_buffer[DEVICE_TOTAL_SIZE];
 /** The device request size. */
 static unsigned viosim_req_size;
 
-/** Process requests that have been placed on the queue. */
+/** Processes requests that have been placed on the queue. */
 static void viosim_req_proc(void) {
     /* Putting the task in the kernel-global workqueue. */
     schedule_work(&viosim_req_task);
@@ -70,8 +71,7 @@ static void viosim_req_proc(void) {
 
 /**
  * Inner helper function.
- * <br />
- * <br />Gets called from inside <code>viosim_dev_read(...)</code>
+ * Gets called from inside <code>viosim_dev_read(...)</code>
  * and <code>viosim_dev_write(...)</code> helpers.
  *
  * @param ppn The physical page number (PPN).
@@ -102,8 +102,7 @@ static int viosim_dev_read_page(const u64 ppn) {
 
 /**
  * Helper (wrapper) function.
- * <br />
- * <br />Reads data from the device.
+ * Reads data from the device.
  *
  * @param req_map The <code>viosim_request_map</code> structure which holds
  *                the device read/write request mapping data.
@@ -156,8 +155,7 @@ static int viosim_dev_read(struct viosim_request_map *req_map) {
 
 /**
  * Inner helper function.
- * <br />
- * <br />Gets called from inside <code>viosim_dev_write(...)</code> helper.
+ * Gets called from inside <code>viosim_dev_write(...)</code> helper.
  *
  * @param ppnx The new physical page number (PPN).
  *
@@ -187,8 +185,7 @@ static int viosim_dev_write_page(const u64 ppnx) {
 
 /**
  * Helper (wrapper) function.
- * <br />
- * <br />Writes data to the device.
+ * Writes data to the device.
  *
  * @param req_map The <code>viosim_request_map</code> structure which holds
  *                the device read/write request mapping data.
@@ -247,7 +244,7 @@ static int viosim_dev_write(struct viosim_request_map *req_map) {
 }
 
 /**
- * Processes the request fetched from the request queue, i.e. data transfer.
+ * Processes the request fetched from the request queue, i.e.\ data transfer.
  *
  * @param req The <code>request</code> structure containing the request
  *            to process.
@@ -696,7 +693,11 @@ static struct block_device_operations viosim_ops = {
     .owner   = THIS_MODULE,
 };
 
-/** Initialize a block device driver module. */
+/**
+ * Initializes a block device driver module.
+ *
+ * @return The exit code indicating the status of initializing the module.
+ */
 static int __init virtblkiosim_init(void) {
     int ret = EXIT_SUCCESS;
 
@@ -804,7 +805,7 @@ static int __init virtblkiosim_init(void) {
     return ret;
 }
 
-/** Clean up and remove a block device driver module. */
+/** Cleans up and removes a block device driver module. */
 static void __exit virtblkiosim_exit(void) {
     pr_info(_MODULE_NAME _COLON_SPACE_SEP _REMOVE_MODULE_MSG _NEW_LINE);
 
