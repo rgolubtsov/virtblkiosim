@@ -205,7 +205,17 @@ int viosim_ioctl_test(const char *viosim_devnode,
     return ret;
 }
 
-/* Continuously performs I/O (read/write) operations in a loop. */
+/**
+ * Continuously performs I/O (read/write) operations in a loop.
+ *
+ * @param viosim_devnode The device node to test.
+ * @param viosim_ioctl   The <code>ioctl()</code> command to tickle the device.
+ * @param num_of_io_ops  The number of I/O operations (iterations).
+ * @param app_name       The name of the application executable.
+ *
+ * @return The exit code indicating the current <code>ioctl()</code> operation
+ *         execution status.
+ */
 int viosim_perf_io(const int       viosim_devnode,
                    const char     *viosim_ioctl,
                    const unsigned  num_of_io_ops,
@@ -304,10 +314,7 @@ int viosim_perf_io(const int       viosim_devnode,
     return ret;
 }
 
-/*
- * Helper function.
- * Closes the device node.
- */
+/* Helper function. Closes the device node. */
 int _viosim_devnode_close(const int viosim_devnode, const char *app_name) {
     int ret = close(viosim_devnode);
 
@@ -321,10 +328,7 @@ int _viosim_devnode_close(const int viosim_devnode, const char *app_name) {
     return ret;
 }
 
-/*
- * Helper function.
- * Draws a horizontal separator banner.
- */
+/* Helper function. Draws a horizontal separator banner. */
 void _separator_draw(const char *banner_text) {
     unsigned char i = strlen(banner_text);
 

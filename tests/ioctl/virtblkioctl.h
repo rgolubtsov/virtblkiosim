@@ -37,14 +37,14 @@
 #include <stdbool.h>
 #include <errno.h>
 
-/** Helper constants. */
+/* Helper constants. */
 #define _EMPTY_STRING       ""
 #define _ONE_SPACE_STRING  " "
 #define _COLON_SPACE_SEP  ": "
 #define _COMMA_SPACE_SEP  ", "
 #define _NEW_LINE         "\n"
 
-/** App name, version, and copyright banners. */
+/* App name, version, and copyright banners. */
 #define _APP_NAME        "VIRTual BLocK IOCTLing (virtblkioctl)"
 #define _APP_DESCRIPTION \
          "Tests block device I/O through the ioctl() system call"
@@ -57,12 +57,12 @@
 #define _DEVNODE_HUB "/dev/"
 #define _MODULE_NAME "virtblkiosim"
 
-/** Constant. Print this when there are less or more than 3 args passed. */
+/** Constant: Print this when there are less or more than 3 args passed. */
 #define _CLI_ARGS_MUST_BE_THREE_ERR \
         "%s: There must be exactly 3 args passed: %d arg(s) found" _NEW_LINE
 
 /**
- * Constant. Print this usage info just after
+ * Constant: Print this usage info just after
  *           the <code>_CLI_ARGS_MUST_BE_THREE_ERR</code> error message.
  */
 #define _CLI_USAGE_MSG \
@@ -89,62 +89,64 @@
          "       <num_of_io_ops>     The number of I/O ops (see '--io' command description)"   _NEW_LINE
 
 /**
- * Constant. Print this when the device node is not specified
+ * Constant: Print this when the device node is not specified
  *           or is empty string.
  */
 #define _DEVNODE_IS_NULL_OR_EMPTY_ERR \
          "%s: Device node is not specified or is empty string"
 
-/** Constant. Print this when opening the device node failed. */
+/** Constant: Print this when opening the device node failed. */
 #define _DEVNODE_OPEN_FAILED_ERR "%s: Cannot open device node: %s"
 
 /**
- * Constant. Print this when an unhandled error occurred
+ * Constant: Print this when an unhandled error occurred
  *           during the device node operating.
  */
 #define _DEVNODE_RELATED_UNHANDLED_ERR "%s: Device node unhandled error"
 
-/** Constant. Print this when closing the device node failed. */
+/** Constant: Print this when closing the device node failed. */
 #define _DEVNODE_CLOSE_FAILED_ERR "%s: Cannot close device node: %s"
 
 /**
- * Constant. Print this when the <code>ioctl()</code> command is not specified
+ * Constant: Print this when the <code>ioctl()</code> command is not specified
  *           or is empty string.
  */
 #define _IOCTLCMD_IS_NULL_OR_EMPTY_ERR \
          "%s: ioctl() command is not specified or is empty string"
 
 /**
- * Constant. Print this when the request size is not specified
+ * Constant: Print this when the request size is not specified
  *           or is empty string.
  */
 #define _REQSIZE_IS_NULL_OR_EMPTY_ERR \
          "%s: Request size is not specified or is empty string"
 
 /**
- * Constant. The cli request size arg indicator meaning that there is no such
- *           (i.e. it has the value of <code>1</code> as a multiplier.
+ * Constant: The cli request size arg indicator meaning that the request size
+ *           is unknown or not applicable for the particular
+ *           <code>ioctl()</code> command (i.e.\ it has the value
+ *           of <code>1</code> as a multiplier).
  */
 #define _REQSIZE_IS_NONE "none"
 
 /**
- * Constant. Print this when the given <code>ioctl()</code> command is unknown.
+ * Constant: Print this when the given <code>ioctl()</code> command is unknown.
  */
 #define _IOCTLCMD_UNKNOWN_COMMAND_ERR "%s: ioctl() command unknown"
 
 /**
- * Constant. Print this just before doing the <code>ioctl()</code> system call
+ * Constant: Print this just before doing the <code>ioctl()</code> system call
  *           against the device.
  */
 #define _MAKE_IOCTL_CALL_PRINT_ARGS_DBG "%s: ===> %s ===> %s"
 
 /**
- * Constant. Print this when an unhandled error occurred
+ * Constant: Print this when an unhandled error occurred
  *           during making <code>ioctl()</code> calls.
  */
 #define _MAKE_IOCTL_CALL_UNHANDLED_ERR "%s: ioctl() unhandled error: %s"
 
-/** Constants. Print for each appropriate <code>ioctl()</code> call result. */
+/** Constants: Print for each appropriate <code>ioctl()</code> call result. */
 #define _IOCTL_CALL_COMMAND_NOT_IMPL_MSG        "%s: Command not implemented"
 #define _IOCTL_CALL_REG_USER_CALLER_RESULT_MSG  "%s: User app registered"
 #define _IOCTL_CALL_GET_REQUEST_SIZE_RESULT_MSG "%s: %lu"
@@ -156,7 +158,7 @@
         _IOCTL_CALL_GET_BLOCK_RESULT_MSG
 #define _IOCTL_CALL_UNKNOWN_COMMAND_MSG         "%s: Unknown command"
 
-/** Constants. Print during <code>ioctl()</code> pseudo-command execution. */
+/** Constants: Print during <code>ioctl()</code> pseudo-command execution. */
 #define _IOCTL_CALL_IO_GET_REQUEST_SIZE_RESULT_MSG "Request size: %lu"
 #define _IOCTL_CALL_IO_GET_BLOCK_RESULT_MSG            \
          "I/O direction: %lu | PPN: %lu"               \
@@ -167,54 +169,41 @@
         _IOCTL_CALL_IO_GET_BLOCK_RESULT_MSG
 
 /**
- * Constant. The ioctl() type letter used to create a corresponding number
+ * Constant: The ioctl() type letter used to create a corresponding number
  *           (see below).
  */
 #define DEVICE_IOCTL_TYPE_LETTER 'q'
 
-/** Constant. The ioctl() command to register a user space caller. */
+/** Constant: The ioctl() command to register a user space caller. */
 #define _DEVICE_IOCTL_REG_USER_CALLER "--reguser"
 #define  DEVICE_IOCTL_REG_USER_CALLER \
         _IO (DEVICE_IOCTL_TYPE_LETTER, 0)
 
-/** Constant. The ioctl() command to get the request size. */
+/** Constant: The ioctl() command to get the request size. */
 #define _DEVICE_IOCTL_GET_REQUEST_SIZE "--getreqsize"
 #define  DEVICE_IOCTL_GET_REQUEST_SIZE \
         _IOR(DEVICE_IOCTL_TYPE_LETTER, 1, unsigned long)
 
-/** Constant. The ioctl() command to read data block. */
+/** Constant: The ioctl() command to read data block. */
 #define _DEVICE_IOCTL_GET_BLOCK "--getblkdata"
 #define  DEVICE_IOCTL_GET_BLOCK \
         _IOR(DEVICE_IOCTL_TYPE_LETTER, 2, unsigned long)
 
-/** Constant. The ioctl() command to write data block. */
+/** Constant: The ioctl() command to write data block. */
 #define _DEVICE_IOCTL_SET_BLOCK "--setblkdata"
 #define  DEVICE_IOCTL_SET_BLOCK \
         _IOW(DEVICE_IOCTL_TYPE_LETTER, 3, unsigned long)
 
 /**
- * Constant. The ioctl() pseudo-command to continuously perform
+ * Constant: The ioctl() pseudo-command to continuously perform
  *           I/O operations in a loop.
  */
 #define _DEVICE_IOCTL_PERF_IO "--io"
 
-/**
- * Continuously performs I/O (read/write) operations in a loop.
- *
- * @param viosim_devnode The device node to test.
- * @param viosim_ioctl   The <code>ioctl()</code> command to tickle the device.
- * @param num_of_io_ops  The number of I/O operations (iterations).
- * @param app_name       The name of the application executable.
- *
- * @return The exit code indicating the current <code>ioctl()</code> operation
- *         execution status.
- */
+/* Continuously performs I/O (read/write) operations in a loop. */
 int viosim_perf_io(const int, const char *, const unsigned, const char *);
 
-/*
- * Helper function.
- * Closes the device node.
- */
+/* Helper function. Closes the device node. */
 extern int _viosim_devnode_close(const int, const char *);
 
 /**
