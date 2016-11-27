@@ -15,17 +15,17 @@ The building process is straightforward: simply `cd` to the `src` directory and 
 ```
 $ make
 make -C/lib/modules/`uname -r`/build M=$PWD
-make[1]: Entering directory '/usr/lib/modules/4.8.7-1-ARCH/build'
+make[1]: Entering directory '/usr/lib/modules/4.8.10-1-ARCH/build'
   LD      /home/<username>/virtblkiosim/src/built-in.o
   CC [M]  /home/<username>/virtblkiosim/src/virtblkiosim.o
   Building modules, stage 2.
   MODPOST 1 modules
   CC      /home/<username>/virtblkiosim/src/virtblkiosim.mod.o
   LD [M]  /home/<username>/virtblkiosim/src/virtblkiosim.ko
-make[1]: Leaving directory '/usr/lib/modules/4.8.7-1-ARCH/build'
+make[1]: Leaving directory '/usr/lib/modules/4.8.10-1-ARCH/build'
 ```
 
-The output above demonstrates building the module using the Linux kernel headers version 4.8.7 (on Arch Linux system). It may vary depending on build tools and/or Linux distribution and kernel version used.
+The output above demonstrates building the module using the Linux kernel headers version 4.8.10 (on Arch Linux system). It may vary depending on build tools and/or Linux distribution and kernel version used.
 
 The finally built module, amongst other files produced is `virtblkiosim.ko`. To see what is it, check it:
 
@@ -60,7 +60,7 @@ Make changes and build again :-))).
 
 ## Dependencies
 
-To build the module one needs to have installed build tools and Linux kernel headers along with their respective dependencies. (As for the example above, the required package containing Linux kernel headers is `linux-headers 4.8.7-1`).
+To build the module one needs to have installed build tools and Linux kernel headers along with their respective dependencies. (As for the example above, the required package containing Linux kernel headers is `linux-headers 4.8.10-1`).
 
 ## Running
 
