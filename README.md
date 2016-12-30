@@ -15,17 +15,17 @@ The building process is straightforward: simply `cd` to the `src` directory and 
 ```
 $ make
 make -C/lib/modules/`uname -r`/build M=$PWD
-make[1]: Entering directory '/usr/lib/modules/4.8.10-1-ARCH/build'
+make[1]: Entering directory '/usr/lib/modules/4.8.13-1-ARCH/build'
   LD      /home/<username>/virtblkiosim/src/built-in.o
   CC [M]  /home/<username>/virtblkiosim/src/virtblkiosim.o
   Building modules, stage 2.
   MODPOST 1 modules
   CC      /home/<username>/virtblkiosim/src/virtblkiosim.mod.o
   LD [M]  /home/<username>/virtblkiosim/src/virtblkiosim.ko
-make[1]: Leaving directory '/usr/lib/modules/4.8.10-1-ARCH/build'
+make[1]: Leaving directory '/usr/lib/modules/4.8.13-1-ARCH/build'
 ```
 
-The output above demonstrates building the module using the Linux kernel headers version 4.8.10 (on Arch Linux system). It may vary depending on build tools and/or Linux distribution and kernel version used.
+The output above demonstrates building the module using the Linux kernel headers version 4.8.13 (on Arch Linux system). It may vary depending on build tools and/or Linux distribution and kernel version used.
 
 The finally built module, amongst other files produced is `virtblkiosim.ko`. To see what is it, check it:
 
@@ -60,7 +60,7 @@ Make changes and build again :-))).
 
 ## Dependencies
 
-To build the module one needs to have installed build tools and Linux kernel headers along with their respective dependencies. (As for the example above, the required package containing Linux kernel headers is `linux-headers 4.8.10-1`).
+To build the module one needs to have installed build tools and Linux kernel headers along with their respective dependencies. (As for the example above, the required package containing Linux kernel headers is `linux-headers 4.8.13-1`).
 
 ## Running
 
@@ -166,7 +166,7 @@ Logout from root, logout from the current user. The guest OS is now ready to acc
 
 ```
 $ ssh -C <vmusername>@10.0.2.100
-Welcome to Ubuntu 16.04.1 LTS (GNU/Linux 4.4.0-34-generic x86_64)
+Welcome to Ubuntu 16.04.1 LTS (GNU/Linux 4.4.0-57-generic x86_64)
 ...
 <vmusername>@<vmhostname>:~$
 ```
@@ -195,14 +195,14 @@ Nothing tricky &ndash; just as it is stated in the main **Building** section:
 ```
 $ make
 make -C/lib/modules/`uname -r`/build M=$PWD
-make[1]: Entering directory '/usr/src/linux-headers-4.4.0-34-generic'
+make[1]: Entering directory '/usr/src/linux-headers-4.4.0-57-generic'
   LD      /home/<vmusername>/virtblkiosim/src/built-in.o
   CC [M]  /home/<vmusername>/virtblkiosim/src/virtblkiosim.o
   Building modules, stage 2.
   MODPOST 1 modules
   CC      /home/<vmusername>/virtblkiosim/src/virtblkiosim.mod.o
   LD [M]  /home/<vmusername>/virtblkiosim/src/virtblkiosim.ko
-make[1]: Leaving directory '/usr/src/linux-headers-4.4.0-34-generic'
+make[1]: Leaving directory '/usr/src/linux-headers-4.4.0-57-generic'
 ```
 
 Again, the block device driver module is the file `virtblkiosim.ko`.
@@ -256,8 +256,8 @@ $ sudo insmod virtblkiosim.ko
 **Variant (b):** Use the `modprobe` command to insert the module registered in the kernel modules configuration database (first register it):
 
 ```
-$ sudo cp -v virtblkiosim.ko /lib/modules/4.4.0-34-generic/kernel/drivers/block
-'virtblkiosim.ko' -> '/lib/modules/4.4.0-34-generic/kernel/drivers/block/virtblkiosim.ko'
+$ sudo cp -v virtblkiosim.ko /lib/modules/4.4.0-57-generic/kernel/drivers/block
+'virtblkiosim.ko' -> '/lib/modules/4.4.0-57-generic/kernel/drivers/block/virtblkiosim.ko'
 $
 $ sudo depmod
 $
@@ -268,14 +268,14 @@ Once the module is registered (see `depmod` above) &ndash; not necessarily it is
 
 ```
 $ modinfo virtblkiosim
-filename:       /lib/modules/4.4.0-34-generic/kernel/drivers/block/virtblkiosim.ko
+filename:       /lib/modules/4.4.0-57-generic/kernel/drivers/block/virtblkiosim.ko
 license:        GPL
 author:         Radislav Golubtsov <ragolubtsov@my.com>
 version:        0.1
 description:    Virtual Linux block device driver for simulating and performing I/O
 srcversion:     0E8954471AD2C23E84BFAB6
 depends:
-vermagic:       4.4.0-34-generic SMP mod_unload modversions
+vermagic:       4.4.0-57-generic SMP mod_unload modversions
 ```
 
 After that examine what has changed:
