@@ -6,6 +6,8 @@
 # Virtual Linux block device driver for simulating and performing I/O.
 #
 # This utility tests block device I/O through the ioctl() system call.
+#
+# (See outer Makefile to understand how this one is processed.)
 # =============================================================================
 # Copyright (C) 2016-2017 Radislav (Radicchio) Golubtsov
 #

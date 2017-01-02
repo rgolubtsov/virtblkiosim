@@ -32,15 +32,19 @@ before_install:
 
 script:
     ## Building the Virtual Linux block device driver (virtblkiosim).
-    - cd src && ls -al
-             && make clean
+    ## Building the utility to run block device ioctl() tests (virtblkioctl).
+    ## Generating docs (for both virtblkiosim and virtblkioctl).
+    - ls -al && make clean
              && make clean
              && ls -al
-             && make
-             && make
+             && make all
+             && make all
+             && ls -al
+             && cd src
              && ls -al
              && echo
              && file virtblkiosim.ko
+             && echo
 
     ## Loading the driver into the running kernel.
     - sudo insmod virtblkiosim.ko && lsblk
@@ -54,19 +58,12 @@ script:
     ## Returning to the previous working dir.
     - cd - && ls -al
 
-    ## Building the utility to run block device ioctl() tests (virtblkioctl).
+    ## Running the VIRTual BLocK IOCTLing utility.
     - cd tests/ioctl && ls -al
-                     && make clean
-                     && make clean
-                     && ls -al
-                     && make all
-                     && make all
-                     && ls -al
                      && echo
                      && file virtblkioctl
-
-    ## Running the VIRTual BLocK IOCTLing utility.
-    - sudo ./virtblkioctl /dev/virtblkiosim --reguser none
+                     && echo
+                     && sudo ./virtblkioctl /dev/virtblkiosim --reguser none
 
     ## Returning to the previous working dir.
     - cd - && ls -al
@@ -80,6 +77,8 @@ script:
 
     ## Returning to the previous working dir.
     - cd - && ls -al
+           && ls -al docs/doxygen/html
+           && ls -al
 
     ## Unloading the driver from the running kernel.
     - sudo rmmod virtblkiosim && lsblk
