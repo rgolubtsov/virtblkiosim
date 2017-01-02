@@ -30,6 +30,12 @@ before_install:
     ## Installing the Flexible I/O Tester package to test the driver.
     - sudo apt-get install fio
 
+    ##
+    # Installing the Doxygen (source code documentation system) package
+    # to generate docs for the driver and ioctl() testing utility.
+    #
+    - sudo apt-get install doxygen
+
 script:
     ## Building the Virtual Linux block device driver (virtblkiosim).
     ## Building the utility to run block device ioctl() tests (virtblkioctl).
