@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-#
 # utils/vm-network-setup (in the source tree)
 #     ~/vm-network-setup (inside VM: /home/<vmusername>)
 # =============================================================================
@@ -11,7 +10,7 @@
 # Place it into the /home/<vmusername> directory and execute it each time
 # after a VM is restarted: $ sudo ./vm-network-setup
 # =============================================================================
-# Copyright (C) 2016 Radislav (Radicchio) Golubtsov
+# Copyright (C) 2016-2017 Radislav (Radicchio) Golubtsov
 #
 
 # Helper constants.

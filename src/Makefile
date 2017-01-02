@@ -5,7 +5,7 @@
 # =============================================================================
 # Virtual Linux block device driver for simulating and performing I/O.
 # =============================================================================
-# Copyright (C) 2016 Radislav (Radicchio) Golubtsov
+# Copyright (C) 2016-2017 Radislav (Radicchio) Golubtsov
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
