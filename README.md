@@ -160,7 +160,7 @@ $ sudo ./vm-network-setup
 nameserver 8.8.8.8
 ```
 
-Logout from root, logout from the current user. The guest OS is now ready to accept connections from the host OS via SSH.
+Log out from root, log out from the current user. The guest OS is now ready to accept connections from the host OS via SSH.
 
 #### Logging into Ubuntu Server through SSH
 
