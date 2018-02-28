@@ -837,4 +837,4 @@ MODULE_VERSION     ( _MODULE_VERSION     );
 MODULE_AUTHOR      ( _MODULE_AUTHOR      );
 MODULE_LICENSE     ( _MODULE_LICENSE     );
 
-/* vim:set nu:et:ts=4:sw=4: */
+/* vim:set nu et ts=4 sw=4: */

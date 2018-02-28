@@ -62,4 +62,4 @@ clean:
 	$(MAKE) $(MAKE_FLAGS)$(TEST_DIR) $(CLN_TARGET)
 	$(RM)   $(RMFLAGS)   $(DOCS_DIR)
 
-# vim:set nu:et:ts=4:sw=4:
+# vim:set nu et ts=4 sw=4:

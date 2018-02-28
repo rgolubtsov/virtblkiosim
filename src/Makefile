@@ -56,4 +56,4 @@ all: default
 clean:
 	$(RM) $(RMFLAGS) $(KMOD).ko $(KMOD).o $(TMPS)
 
-# vim:set nu:et:ts=4:sw=4:
+# vim:set nu et ts=4 sw=4:
