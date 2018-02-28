@@ -362,4 +362,4 @@ int main(int argc, char **argv) {
     return ret;
 }
 
-/* vim:set nu:et:ts=4:sw=4: */
+/* vim:set nu et ts=4 sw=4: */

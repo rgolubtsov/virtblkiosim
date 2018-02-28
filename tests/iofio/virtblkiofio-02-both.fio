@@ -27,4 +27,4 @@ rw=randwrite
 blocksize=4k
 iodepth=16
 
-# vim:set nu:et:ts=4:sw=4:
+# vim:set nu et ts=4 sw=4:

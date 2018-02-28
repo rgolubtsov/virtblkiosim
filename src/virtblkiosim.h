@@ -219,4 +219,4 @@ struct viosim_request_map {
 
 #endif /* __LINUX__VIRTBLKIOSIM_H */
 
-/* vim:set nu:et:ts=4:sw=4: */
+/* vim:set nu et ts=4 sw=4: */
