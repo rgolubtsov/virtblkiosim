@@ -19,7 +19,7 @@ compiler: gcc
 
 sudo: required
 
-dist: trusty
+dist: xenial
 
 before_install:
     - sudo apt-get update
