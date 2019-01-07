@@ -335,7 +335,8 @@ void _separator_draw(const char *banner_text) {
     do { putchar('='); i--; } while (i); puts(_EMPTY_STRING);
 }
 
-int main(int argc, char **argv) {
+/* The application entry point. */
+int main(int argc, char *const *argv) {
     int ret = EXIT_SUCCESS;
 
     _separator_draw(_APP_COPYRIGHT__ _ONE_SPACE_STRING _APP_AUTHOR);
