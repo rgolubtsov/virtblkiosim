@@ -43,6 +43,7 @@
 #define _COLON_SPACE_SEP  ": "
 #define _COMMA_SPACE_SEP  ", "
 #define _NEW_LINE         "\n"
+#define _PRINT_BANNER_OPT "-V"
 
 /* App name, version, and copyright banners. */
 #define _APP_NAME        "VIRTual BLocK IOCTLing (virtblkioctl)"
@@ -57,9 +58,9 @@
 #define _DEVNODE_HUB "/dev/"
 #define _MODULE_NAME "virtblkiosim"
 
-/** Constant: Print this when there are less or more than 3 args passed. */
-#define _CLI_ARGS_MUST_BE_THREE_ERR \
-        "%s: There must be exactly 3 args passed: %d arg(s) found" _NEW_LINE
+/** Constant: Print this when there is insufficient number of args passed. */
+#define _CLI_ARGS_MUST_BE_THREE_ERR "%s: There must be three or four args " \
+                                    "passed: %d arg(s) found" _NEW_LINE
 
 /**
  * Constant: Print this usage info just after
@@ -67,7 +68,7 @@
  */
 #define _CLI_USAGE_MSG \
          "Usage: virtblkioctl <device_node> <ioctl_command> <request_size"                               \
-                                                           "|num_of_io_ops>"                   _NEW_LINE \
+                                                           "|num_of_io_ops> [-V]"              _NEW_LINE \
                                                                                                _NEW_LINE \
          "       <device_node>       Something like " _DEVNODE_HUB _MODULE_NAME                _NEW_LINE \
                                                                                                _NEW_LINE \

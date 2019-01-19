@@ -339,16 +339,43 @@ void _separator_draw(const char *banner_text) {
 int main(int argc, char *const *argv) {
     int ret = EXIT_SUCCESS;
 
-/*  _separator_draw(_APP_COPYRIGHT__ _ONE_SPACE_STRING _APP_AUTHOR);
+    char *print_banner_opt = _EMPTY_STRING;
 
-    printf(_APP_NAME        _COMMA_SPACE_SEP                         \
-           _APP_VERSION_S__ _ONE_SPACE_STRING _APP_VERSION _NEW_LINE \
-           _APP_DESCRIPTION                                _NEW_LINE \
-           _APP_COPYRIGHT__ _ONE_SPACE_STRING _APP_AUTHOR  _NEW_LINE);
+    int argv4_len, /*
+        ^
+        |
+        +-------- Needs this for toupper'ing argv[4] only.
+        |
+        v
+    */  i;
 
-    _separator_draw(_APP_COPYRIGHT__ _ONE_SPACE_STRING _APP_AUTHOR);*/
+    if (argc > 4) {
+        argv4_len = strlen(argv[4]);
 
-    if (argc != 4) {
+        print_banner_opt = malloc(argv4_len);
+
+        for (i = 0; i <= argv4_len; i++) {
+            print_banner_opt[i] = toupper(argv[4][i]);
+        }
+    }
+
+    if (strcmp(print_banner_opt, _PRINT_BANNER_OPT) == 0) {
+        _separator_draw(_APP_COPYRIGHT__ _ONE_SPACE_STRING _APP_AUTHOR);
+
+        printf(_APP_NAME        _COMMA_SPACE_SEP                         \
+               _APP_VERSION_S__ _ONE_SPACE_STRING _APP_VERSION _NEW_LINE \
+               _APP_DESCRIPTION                                _NEW_LINE \
+               _APP_COPYRIGHT__ _ONE_SPACE_STRING _APP_AUTHOR  _NEW_LINE);
+
+        _separator_draw(_APP_COPYRIGHT__ _ONE_SPACE_STRING _APP_AUTHOR);
+    }
+
+    if (argc > 4) {
+        free(print_banner_opt);
+    }
+
+    /* Checking for args presence. */
+    if (argc < 4) {
         ret = EXIT_FAILURE;
 
         fprintf(stderr, _CLI_ARGS_MUST_BE_THREE_ERR _NEW_LINE,
