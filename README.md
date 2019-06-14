@@ -114,7 +114,7 @@ Or simply do relogin. Next:
 
 ```
 $ groups
-wheel kvm <usergroup>
+wheel kvm <usergroup>    <== Notice the kvm group membership.
 $
 $ sudo ip tuntap add tap0 mode tap user <username> group <usergroup>
 $ sudo ip addr add 10.0.2.1/24 dev tap0
@@ -129,7 +129,17 @@ $ sudo iptables -t nat -L
 Chain POSTROUTING (policy ACCEPT)
 target     prot opt source               destination
 MASQUERADE  all  --  10.0.2.0/24          anywhere
-$
+```
+
+If there are no any of DHCP clients running &ndash; for instance if the network is configured to utilize static IP addressing &ndash; it needs to run a DHCP client daemon against the `tap0` interface:
+
+```
+$ sudo dhcpcd -qb tap0
+```
+
+Next, run the VDE switch to acquire carrier:
+
+```
 $ sudo vde_switch -mod 660 -group <usergroup> -tap tap0 -daemon
 ```
 
