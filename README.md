@@ -117,6 +117,7 @@ $ groups
 wheel kvm <usergroup>    <== Notice the kvm group membership.
 $
 $ sudo ip tuntap add tap0 mode tap user <username> group <usergroup>
+$ sudo ip link set tap0 up
 $ sudo ip addr add 10.0.2.1/24 dev tap0
 $
 $ sudo sysctl -w net.ipv4.ip_forward=1
@@ -131,11 +132,13 @@ target     prot opt source               destination
 MASQUERADE  all  --  10.0.2.0/24          anywhere
 ```
 
-If there are no any of DHCP clients running &ndash; for instance if the network is configured to utilize static IP addressing &ndash; it needs to run a DHCP client daemon against the `tap0` interface:
+~~If there are no any of DHCP clients running &ndash; for instance if the network is configured to utilize static IP addressing &ndash; it needs to run a DHCP client daemon against the `tap0` interface:~~
 
 ```
-$ sudo dhcpcd -qb tap0
+$ sudo dhcpcd -qb tap0  # <== Note: Though this is generally applicable, looks quite redundant and unneeded in this case (see below).
 ```
+
+Instead, run the following command: `$ sudo ip link set tap0 up` (it is already presented above, just after adding the `tap0` interface). It will bring the interface up.
 
 Next, run the VDE switch to acquire carrier:
 
