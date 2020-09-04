@@ -7,7 +7,7 @@
  *
  * This utility tests block device I/O through the ioctl() system call.
  * ============================================================================
- * Copyright (C) 2016-2019 Radislav (Radicchio) Golubtsov
+ * Copyright (C) 2016-2020 Radislav (Radicchio) Golubtsov
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -51,7 +51,7 @@
          "Tests block device I/O through the ioctl() system call"
 #define _APP_VERSION_S__ "Version"
 #define _APP_VERSION     "0.1"
-#define _APP_COPYRIGHT__ "Copyright (C) 2016-2019"
+#define _APP_COPYRIGHT__ "Copyright (C) 2016-2020"
 #define _APP_AUTHOR      "Radislav Golubtsov <ragolubtsov@my.com>"
 
 /** The device node to test. */
