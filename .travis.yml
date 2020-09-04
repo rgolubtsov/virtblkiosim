@@ -17,9 +17,9 @@ language: c
 
 compiler: gcc
 
-sudo: required
+os:       linux
 
-dist: xenial
+dist:     xenial
 
 before_install:
     - sudo apt-get update
@@ -37,6 +37,14 @@ before_install:
     - sudo apt-get install doxygen
 
 script:
+    ## Querying the system for characteristics and available resources.
+    - cat /proc/cpuinfo | grep name && echo
+                                    && uname -a
+                                    && echo
+                                    && df -h
+                                    && echo
+                                    && free
+
     ## Building the Virtual Linux block device driver (virtblkiosim).
     ## Building the utility to run block device ioctl() tests (virtblkioctl).
     ## Generating docs (for both virtblkiosim and virtblkioctl).
@@ -76,10 +84,10 @@ script:
 
     ## Running the VIRTual BLocK IOFIOing (fio/libaio) tests.
     - cd tests/iofio && ls -al
-#                     && echo
-#                     && sudo fio virtblkiofio-00-read.fio
-#                     && echo
-#                     && sudo fio virtblkiofio-01-write.fio
+#                    && echo
+#                    && sudo fio virtblkiofio-00-read.fio
+#                    && echo
+#                    && sudo fio virtblkiofio-01-write.fio
 
     ## Returning to the previous working dir.
     - cd - && ls -al
