@@ -1,7 +1,7 @@
 /*
  * tests/ioctl/virtblkioctl.h
  * ============================================================================
- * VIRTual BLocK IO SIMulating (virtblkiosim). Version 0.1
+ * VIRTual BLocK IO SIMulating (virtblkiosim). Version 0.9.9
  * ============================================================================
  * Virtual Linux block device driver for simulating and performing I/O.
  *
@@ -50,7 +50,7 @@
 #define _APP_DESCRIPTION \
          "Tests block device I/O through the ioctl() system call"
 #define _APP_VERSION_S__ "Version"
-#define _APP_VERSION     "0.1"
+#define _APP_VERSION     "0.9.9"
 #define _APP_COPYRIGHT__ "Copyright (C) 2016-2021"
 #define _APP_AUTHOR      "Radislav (Radicchio) Golubtsov <radicchio@vk.com>"
 

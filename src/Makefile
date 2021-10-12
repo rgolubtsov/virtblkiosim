@@ -1,7 +1,7 @@
 #
 # src/Makefile
 # =============================================================================
-# VIRTual BLocK IO SIMulating (virtblkiosim). Version 0.1
+# VIRTual BLocK IO SIMulating (virtblkiosim). Version 0.9.9
 # =============================================================================
 # Virtual Linux block device driver for simulating and performing I/O.
 #
