@@ -8,6 +8,23 @@ It is created using the way of aggressively utilizing source code comments, even
 
 The current implementation of a block device driver actually does nothing except it has methods to perform I/O (read/write operations) with blocks of memory of strictly predefined sizes. The process of moving blocks of data to/from a virtual device is simulating the data exchange between a physical storage device and a userland program. This is possible (and is implemented) through the use of the `ioctl()` system call.
 
+---
+
+## Table of Contents
+
+* **[Building](#building)**
+* **[Dependencies](#dependencies)**
+* **[Running](#running)**
+  * **[Setting up the VM](#setting-up-the-vm)**
+    * **[Creating QEMU HDD](#creating-qemu-hdd)**
+    * **[Installing Ubuntu Server](#installing-ubuntu-server)**
+    * **[Starting up Ubuntu Server](#starting-up-ubuntu-server)**
+    * **[Logging into Ubuntu Server through SSH](#logging-into-ubuntu-server-through-ssh)**
+  * **[Obtaining block device driver sources](#obtaining-block-device-driver-sources)**
+  * **[Building the block device driver module](#building-the-block-device-driver-module)**
+  * **[Inserting the module into the kernel](#inserting-the-module-into-the-kernel)**
+  * **[Removing the module from the kernel](#removing-the-module-from-the-kernel)**
+
 ## Building
 
 The building process is straightforward: simply `cd` to the `src` directory and `make` the module:
