@@ -283,7 +283,7 @@ Once the module is registered (see `depmod` above) &ndash; not necessarily it is
 $ modinfo virtblkiosim
 filename:       /lib/modules/4.4.0-57-generic/kernel/drivers/block/virtblkiosim.ko
 license:        GPL
-author:         Radislav Golubtsov <ragolubtsov@my.com>
+author:         Radislav (Radicchio) Golubtsov <radicchio@vk.com>
 version:        0.1
 description:    Virtual Linux block device driver for simulating and performing I/O
 srcversion:     0E8954471AD2C23E84BFAB6
@@ -333,7 +333,7 @@ The module is designed to log informational messages of what it is doing and deb
 $ tailf /var/log/kern.log
 ...
 Nov  4 07:07:53 <vmhostname> kernel: [687996.897544] virtblkiosim: Virtual Linux block device driver for simulating and performing I/O, Version 0.1
-Nov  4 07:07:53 <vmhostname> kernel: [687996.897544] virtblkiosim: Copyright (C) 2016 Radislav Golubtsov <ragolubtsov@my.com>
+Nov  4 07:07:53 <vmhostname> kernel: [687996.897544] virtblkiosim: Copyright (C) 2016 Radislav (Radicchio) Golubtsov <radicchio@vk.com>
 Nov  4 07:07:53 <vmhostname> kernel: [687996.897550] virtblkiosim: Device registered with major number of 251
 Nov  4 07:07:53 <vmhostname> kernel: [687996.899753] virtblkiosim: Device engage: private_data: virtblkiosim
 Nov  4 07:07:53 <vmhostname> kernel: [687996.899873] virtblkiosim: Device release: private_data: virtblkiosim

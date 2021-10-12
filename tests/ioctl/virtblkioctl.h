@@ -52,7 +52,7 @@
 #define _APP_VERSION_S__ "Version"
 #define _APP_VERSION     "0.1"
 #define _APP_COPYRIGHT__ "Copyright (C) 2016-2021"
-#define _APP_AUTHOR      "Radislav Golubtsov <ragolubtsov@my.com>"
+#define _APP_AUTHOR      "Radislav (Radicchio) Golubtsov <radicchio@vk.com>"
 
 /** The device node to test. */
 #define _DEVNODE_HUB "/dev/"
