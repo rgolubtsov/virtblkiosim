@@ -2,7 +2,7 @@
 # utils/vm-network-setup (in the source tree)
 #     ~/vm-network-setup (inside VM: /home/<vmusername>)
 # =============================================================================
-# VIRTual BLocK IO SIMulating (virtblkiosim). Version 0.9.9
+# VIRTual BLocK IO SIMulating (virtblkiosim). Version 0.9.10
 # =============================================================================
 # Virtual Linux block device driver for simulating and performing I/O.
 #
