@@ -44,7 +44,7 @@
 #define _MODULE_VERSION_S__ "Version"
 #define _MODULE_VERSION     "0.9.9"
 #define _MODULE_COPYRIGHT__ "Copyright (C) 2016-2021"
-#define _MODULE_AUTHOR      "Radislav (Radicchio) Golubtsov <radicchio@vk.com>"
+#define _MODULE_AUTHOR      "Radislav Golubtsov <radicchio@vk.com>"
 #define _MODULE_LICENSE     "GPL"
 
 /** Constant: Print this when registering the device failed. */
