@@ -299,7 +299,7 @@ Once the module is registered (see `depmod` above) &ndash; not necessarily it is
 ```
 $ modinfo virtblkiosim
 filename:       /lib/modules/4.4.0-57-generic/kernel/drivers/block/virtblkiosim.ko
-license:        GPL
+license:        MIT
 author:         Radislav Golubtsov <radicchio@vk.com>
 version:        0.9.9
 description:    Virtual Linux block device driver for simulating and performing I/O

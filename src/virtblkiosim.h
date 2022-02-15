@@ -7,16 +7,6 @@
  * ============================================================================
  * Copyright (C) 2016-2022 Radislav (Radicchio) Golubtsov
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
  * (See the LICENSE file at the top of the source tree.)
  */
 
@@ -45,7 +35,7 @@
 #define _MODULE_VERSION     "0.9.9"
 #define _MODULE_COPYRIGHT__ "Copyright (C) 2016-2022"
 #define _MODULE_AUTHOR      "Radislav Golubtsov <radicchio@vk.com>"
-#define _MODULE_LICENSE     "GPL"
+#define _MODULE_LICENSE     "MIT"
 
 /** Constant: Print this when registering the device failed. */
 #define _REGISTER_DEVICE_FAILED_ERR "Failed to register device"
