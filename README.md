@@ -73,7 +73,7 @@ removed '.tmp_versions/virtblkiosim.mod'
 removed directory '.tmp_versions'
 ```
 
-Make changes and build again :-))).
+Make changes and build again. :smiley:
 
 ## Dependencies
 
@@ -166,7 +166,7 @@ $ sudo vde_switch -mod 660 -group <usergroup> -tap tap0 -daemon
 Finally, start up Ubuntu Server:
 
 ```
-$ qemu-system-x86_64 -m 512M -enable-kvm -cpu host -smp 2 -net nic,model=virtio -net vde -drive file=<hdd-image-file>,format=raw
+$ qemu-system-x86_64 -m 1G -enable-kvm -cpu host -smp 2 -net nic,model=virtio -net vde -drive file=<hdd-image-file>,format=raw
 ```
 
 When the guest OS (Ubuntu Server) is up and running, login into it and do the following:
