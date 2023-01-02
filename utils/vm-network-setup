@@ -10,7 +10,7 @@
 # Place it into the /home/<vmusername> directory and execute it each time
 # after a VM is restarted: $ sudo ./vm-network-setup
 # =============================================================================
-# Copyright (C) 2016-2022 Radislav (Radicchio) Golubtsov
+# Copyright (C) 2016-2023 Radislav (Radicchio) Golubtsov
 #
 
 # Helper constants.

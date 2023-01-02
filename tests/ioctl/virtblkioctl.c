@@ -7,7 +7,7 @@
  *
  * This utility tests block device I/O through the ioctl() system call.
  * ============================================================================
- * Copyright (C) 2016-2022 Radislav (Radicchio) Golubtsov
+ * Copyright (C) 2016-2023 Radislav (Radicchio) Golubtsov
  *
  * (See the LICENSE file at the top of the source tree.)
  */
