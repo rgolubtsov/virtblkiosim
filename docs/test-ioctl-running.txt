@@ -1,10 +1,10 @@
 # === Running VIRTual BLocK IOCTLing (without args) ===========================
 $ ./virtblkioctl
-==========================================================
+=============================================================
 VIRTual BLocK IOCTLing (virtblkioctl), Version 0.9.10
 Tests block device I/O through the ioctl() system call
 Copyright (C) 2016-2022 Radislav Golubtsov <radicchio@vk.com>
-==========================================================
+=============================================================
 ./virtblkioctl: There must be exactly 3 args passed: 0 arg(s) found
 
 Usage: virtblkioctl <device_node> <ioctl_command> <request_size|num_of_io_ops>
@@ -30,20 +30,20 @@ Usage: virtblkioctl <device_node> <ioctl_command> <request_size|num_of_io_ops>
 
 # === Running VIRTual BLocK IOCTLing (without sudo) ===========================
 $ ./virtblkioctl /dev/virtblkiosim --reguser none
-==========================================================
+=============================================================
 VIRTual BLocK IOCTLing (virtblkioctl), Version 0.9.10
 Tests block device I/O through the ioctl() system call
 Copyright (C) 2016-2022 Radislav Golubtsov <radicchio@vk.com>
-==========================================================
+=============================================================
 ./virtblkioctl: Cannot open device node: Permission denied
 
 # === Running VIRTual BLocK IOCTLing (--reguser) ==============================
 $ sudo ./virtblkioctl /dev/virtblkiosim --reguser none
-==========================================================
+=============================================================
 VIRTual BLocK IOCTLing (virtblkioctl), Version 0.9.10
 Tests block device I/O through the ioctl() system call
 Copyright (C) 2016-2022 Radislav Golubtsov <radicchio@vk.com>
-==========================================================
+=============================================================
 ./virtblkioctl: ===> /dev/virtblkiosim ===> --reguser
 --reguser: User app registered
 
@@ -56,11 +56,11 @@ Nov  9 07:06:04 <vmhostname> kernel: [1119885.007626] virtblkiosim: Device relea
 
 # === Running VIRTual BLocK IOCTLing (--getreqsize) ===========================
 $ sudo ./virtblkioctl /dev/virtblkiosim --getreqsize none
-==========================================================
+=============================================================
 VIRTual BLocK IOCTLing (virtblkioctl), Version 0.9.10
 Tests block device I/O through the ioctl() system call
 Copyright (C) 2016-2022 Radislav Golubtsov <radicchio@vk.com>
-==========================================================
+=============================================================
 ./virtblkioctl: ===> /dev/virtblkiosim ===> --getreqsize
 --getreqsize: 15381536
 
@@ -73,11 +73,11 @@ Nov  9 07:06:33 <vmhostname> kernel: [1119914.143720] virtblkiosim: Device relea
 
 # === Running VIRTual BLocK IOCTLing (--setblkdata) ===========================
 $ sudo ./virtblkioctl /dev/virtblkiosim --setblkdata 8
-==========================================================
+=============================================================
 VIRTual BLocK IOCTLing (virtblkioctl), Version 0.9.10
 Tests block device I/O through the ioctl() system call
 Copyright (C) 2016-2022 Radislav Golubtsov <radicchio@vk.com>
-==========================================================
+=============================================================
 ./virtblkioctl: ===> /dev/virtblkiosim ===> --setblkdata
 --setblkdata: I/O direction: 0 | Start sector: 0 | Number of sectors: 0 | Request buffer: 0
 
@@ -90,11 +90,11 @@ Nov  9 07:36:50 <vmhostname> kernel: [1121730.541113] virtblkiosim: Device relea
 
 # === Running VIRTual BLocK IOCTLing (--getblkdata) ===========================
 $ sudo ./virtblkioctl /dev/virtblkiosim --getblkdata 8
-==========================================================
+=============================================================
 VIRTual BLocK IOCTLing (virtblkioctl), Version 0.9.10
 Tests block device I/O through the ioctl() system call
 Copyright (C) 2016-2022 Radislav Golubtsov <radicchio@vk.com>
-==========================================================
+=============================================================
 ./virtblkioctl: ===> /dev/virtblkiosim ===> --getblkdata
 --getblkdata: I/O direction: 0 | Start sector: 0 | Number of sectors: 0 | Request buffer: 0
 
@@ -107,11 +107,11 @@ Nov  9 07:38:33 <vmhostname> kernel: [1121833.735878] virtblkiosim: Device relea
 
 # === Running VIRTual BLocK IOCTLing (--io) ===================================
 $ sudo ./virtblkioctl /dev/virtblkiosim --io 4
-==========================================================
+=============================================================
 VIRTual BLocK IOCTLing (virtblkioctl), Version 0.9.10
 Tests block device I/O through the ioctl() system call
 Copyright (C) 2016-2022 Radislav Golubtsov <radicchio@vk.com>
-==========================================================
+=============================================================
 --io: User app registered
 Request size: 6299872
 I/O direction: 0 | PPN: 0 | Start sector: 0 | Number of sectors: 0 | Request buffer: 140728144042261
