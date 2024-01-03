@@ -3,7 +3,7 @@ $ ./virtblkioctl
 =============================================================
 VIRTual BLocK IOCTLing (virtblkioctl), Version 0.9.10
 Tests block device I/O through the ioctl() system call
-Copyright (C) 2016-2023 Radislav Golubtsov <radicchio@vk.com>
+Copyright (C) 2016-2024 Radislav Golubtsov <radicchio@vk.com>
 =============================================================
 ./virtblkioctl: There must be exactly 3 args passed: 0 arg(s) found
 
@@ -33,7 +33,7 @@ $ ./virtblkioctl /dev/virtblkiosim --reguser none
 =============================================================
 VIRTual BLocK IOCTLing (virtblkioctl), Version 0.9.10
 Tests block device I/O through the ioctl() system call
-Copyright (C) 2016-2023 Radislav Golubtsov <radicchio@vk.com>
+Copyright (C) 2016-2024 Radislav Golubtsov <radicchio@vk.com>
 =============================================================
 ./virtblkioctl: Cannot open device node: Permission denied
 
@@ -42,7 +42,7 @@ $ sudo ./virtblkioctl /dev/virtblkiosim --reguser none
 =============================================================
 VIRTual BLocK IOCTLing (virtblkioctl), Version 0.9.10
 Tests block device I/O through the ioctl() system call
-Copyright (C) 2016-2023 Radislav Golubtsov <radicchio@vk.com>
+Copyright (C) 2016-2024 Radislav Golubtsov <radicchio@vk.com>
 =============================================================
 ./virtblkioctl: ===> /dev/virtblkiosim ===> --reguser
 --reguser: User app registered
@@ -59,7 +59,7 @@ $ sudo ./virtblkioctl /dev/virtblkiosim --getreqsize none
 =============================================================
 VIRTual BLocK IOCTLing (virtblkioctl), Version 0.9.10
 Tests block device I/O through the ioctl() system call
-Copyright (C) 2016-2023 Radislav Golubtsov <radicchio@vk.com>
+Copyright (C) 2016-2024 Radislav Golubtsov <radicchio@vk.com>
 =============================================================
 ./virtblkioctl: ===> /dev/virtblkiosim ===> --getreqsize
 --getreqsize: 15381536
@@ -76,7 +76,7 @@ $ sudo ./virtblkioctl /dev/virtblkiosim --setblkdata 8
 =============================================================
 VIRTual BLocK IOCTLing (virtblkioctl), Version 0.9.10
 Tests block device I/O through the ioctl() system call
-Copyright (C) 2016-2023 Radislav Golubtsov <radicchio@vk.com>
+Copyright (C) 2016-2024 Radislav Golubtsov <radicchio@vk.com>
 =============================================================
 ./virtblkioctl: ===> /dev/virtblkiosim ===> --setblkdata
 --setblkdata: I/O direction: 0 | Start sector: 0 | Number of sectors: 0 | Request buffer: 0
@@ -93,7 +93,7 @@ $ sudo ./virtblkioctl /dev/virtblkiosim --getblkdata 8
 =============================================================
 VIRTual BLocK IOCTLing (virtblkioctl), Version 0.9.10
 Tests block device I/O through the ioctl() system call
-Copyright (C) 2016-2023 Radislav Golubtsov <radicchio@vk.com>
+Copyright (C) 2016-2024 Radislav Golubtsov <radicchio@vk.com>
 =============================================================
 ./virtblkioctl: ===> /dev/virtblkiosim ===> --getblkdata
 --getblkdata: I/O direction: 0 | Start sector: 0 | Number of sectors: 0 | Request buffer: 0
@@ -110,7 +110,7 @@ $ sudo ./virtblkioctl /dev/virtblkiosim --io 4
 =============================================================
 VIRTual BLocK IOCTLing (virtblkioctl), Version 0.9.10
 Tests block device I/O through the ioctl() system call
-Copyright (C) 2016-2023 Radislav Golubtsov <radicchio@vk.com>
+Copyright (C) 2016-2024 Radislav Golubtsov <radicchio@vk.com>
 =============================================================
 --io: User app registered
 Request size: 6299872

@@ -7,7 +7,7 @@
 #
 # (See inner Makefiles to find out actual build rules.)
 # =============================================================================
-# Copyright (C) 2016-2023 Radislav (Radicchio) Golubtsov
+# Copyright (C) 2016-2024 Radislav (Radicchio) Golubtsov
 #
 # (See the LICENSE file at the top of the source tree.)
 #

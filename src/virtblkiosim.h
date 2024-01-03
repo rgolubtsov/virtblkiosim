@@ -5,7 +5,7 @@
  * ============================================================================
  * Virtual Linux block device driver for simulating and performing I/O.
  * ============================================================================
- * Copyright (C) 2016-2023 Radislav (Radicchio) Golubtsov
+ * Copyright (C) 2016-2024 Radislav (Radicchio) Golubtsov
  *
  * (See the LICENSE file at the top of the source tree.)
  */
@@ -33,7 +33,7 @@
          "Virtual Linux block device driver for simulating and performing I/O"
 #define _MODULE_VERSION_S__ "Version"
 #define _MODULE_VERSION     "0.9.10"
-#define _MODULE_COPYRIGHT__ "Copyright (C) 2016-2023"
+#define _MODULE_COPYRIGHT__ "Copyright (C) 2016-2024"
 #define _MODULE_AUTHOR      "Radislav Golubtsov <radicchio@vk.com>"
 #define _MODULE_LICENSE     "MIT"
 
