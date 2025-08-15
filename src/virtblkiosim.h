@@ -34,7 +34,7 @@
 #define _MODULE_VERSION_S__ "Version"
 #define _MODULE_VERSION     "0.9.10"
 #define _MODULE_COPYRIGHT__ "Copyright (C) 2016-2025"
-#define _MODULE_AUTHOR      "Radislav Golubtsov <radicchio@vk.com>"
+#define _MODULE_AUTHOR      "Radislav Golubtsov <rgolubtsov@protonmail.com>"
 #define _MODULE_LICENSE     "MIT"
 
 /** Constant: Print this when registering the device failed. */
