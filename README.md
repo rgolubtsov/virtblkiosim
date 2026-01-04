@@ -350,7 +350,7 @@ The module is designed to log informational messages of what it is doing and deb
 $ tailf /var/log/kern.log
 ...
 Nov  4 07:07:53 <vmhostname> kernel: [687996.897544] virtblkiosim: Virtual Linux block device driver for simulating and performing I/O, Version 0.9.10
-Nov  4 07:07:53 <vmhostname> kernel: [687996.897544] virtblkiosim: Copyright (C) 2016-2025 Radislav Golubtsov <rgolubtsov@protonmail.com>
+Nov  4 07:07:53 <vmhostname> kernel: [687996.897544] virtblkiosim: Copyright (C) 2016-2026 Radislav Golubtsov <rgolubtsov@protonmail.com>
 Nov  4 07:07:53 <vmhostname> kernel: [687996.897550] virtblkiosim: Device registered with major number of 251
 Nov  4 07:07:53 <vmhostname> kernel: [687996.899753] virtblkiosim: Device engage: private_data: virtblkiosim
 Nov  4 07:07:53 <vmhostname> kernel: [687996.899873] virtblkiosim: Device release: private_data: virtblkiosim

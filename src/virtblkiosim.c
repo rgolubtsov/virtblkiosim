@@ -5,7 +5,7 @@
  * ============================================================================
  * Virtual Linux block device driver for simulating and performing I/O.
  * ============================================================================
- * Copyright (C) 2016-2025 Radislav (Radicchio) Golubtsov
+ * Copyright (C) 2016-2026 Radislav (Radicchio) Golubtsov
  *
  * (See the LICENSE file at the top of the source tree.)
  */
